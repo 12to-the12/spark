@@ -1,1 +1,1 @@
-echo HelloWorld!
+echo "And we see a spark of life"
