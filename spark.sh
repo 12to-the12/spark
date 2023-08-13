@@ -15,6 +15,9 @@ sudo systemctl enable sshd
 sudo systemctl start sshd
 sudo systemctl status sshd
 
+# zerotier
+curl -s https://install.zerotier.com | sudo bash
+
 # additional repo
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf update -y
@@ -35,14 +38,22 @@ sudo systemctl enable supergfxd.service
 sudo dnf install asusctl-rog-gui
 
 
+# neofetch
+sudo dnf install neofetch
+
+
 # blender
 
 flatpak install flathub org.blender.Blender
+
+# appimage launcher
+sudo dnf install https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
 
 
 # qbittorent
 cd ~/Downloads
 wget https://www.fosshub.com/qBittorrent.html?dwl=qbittorrent-4.5.4_x86_64.AppImage
+
 
 # qbittorent cli
 sudo rpm --import 'https://dl.cloudsmith.io/public/qbittorrent-cli/qbittorrent-cli/gpg.F8756541ADDA2B7D.key'
@@ -53,3 +64,6 @@ sudo dnf install qbittorrent-cli
 
 
 echo "please reboot"
+
+# $  qbt settings set username $username
+# $ qbt settings set password
