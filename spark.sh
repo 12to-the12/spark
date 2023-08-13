@@ -2,8 +2,14 @@ echo "And we see a spark of life"
 
 echo "Please refer to"
 echo "https://asus-linux.org/wiki/fedora-guide/"
-
+echo "for the G-14"
 sudo dnf update -y
+
+sudo dnf install openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo systemctl status sshd
+
 
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -25,9 +31,6 @@ sudo systemctl enable supergfxd.service
 
 sudo dnf install asusctl-rog-gui
 
-sudo dnf install openssh-server
-sudo systemctl enable sshd
-sudo systemctl start sshd
-sudo systemctl status sshd
+
 
 echo "Then reboot"
