@@ -42,6 +42,12 @@ sudo dnf install asusctl-rog-gui
 sudo dnf install neofetch
 
 
+# plex media server
+sudo dnf install https://downloads.plex.tv/plex-media-server-new/1.32.5.7349-8f4248874/redhat/plexmediaserver-1.32.5.7349-8f4248874.x86_64.rpm
+sudo systemctl enable plexmediaserver
+sudo systemctl start plexmediaserver
+echo "go to http://$ip_address_here:32400/web/ to set up plex"
+
 # blender
 
 flatpak install flathub org.blender.Blender
