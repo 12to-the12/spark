@@ -25,4 +25,9 @@ sudo systemctl enable supergfxd.service
 
 sudo dnf install asusctl-rog-gui
 
+sudo dnf install openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo systemctl status sshd
+
 echo "Then reboot"
