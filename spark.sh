@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# my personal linux box setup script
 echo "And we see a spark of life"
 
 echo "Please refer to"
