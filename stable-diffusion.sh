@@ -80,6 +80,16 @@ wget -O ./embeddings/GS-Womanly.pt https://civitai.com/api/download/models/96916
 wget -O ./embeddings/GS-DeMasculate-neg.pt https://civitai.com/api/download/models/95959
 
 
+
+## SDXL
+# installation guide: https://aituts.com/sdxl/
+# SDXL Base model
+wget -P ./models/Stable-diffusion https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
+wget -P ./models/Stable-diffusion https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors
+wget -P ./models/VAE https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
+
+
+
 ## Control Net models
 # https://huggingface.co/lllyasviel/ControlNet/tree/main/models
 # https://github.com/Mikubill/sd-webui-controlnet
