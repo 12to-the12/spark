@@ -88,7 +88,9 @@ wget -P ./models/Stable-diffusion https://huggingface.co/stabilityai/stable-diff
 wget -P ./models/Stable-diffusion https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors
 wget -P ./models/VAE https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
 
-
+# Dreamshaper XL
+# https://civitai.com/models/112902
+wget -O ./models/Stable-diffusion/dreamshaperXL10_alpha2Xl10.safetensors https://civitai.com/api/download/models/126688
 
 ## Control Net models
 # https://huggingface.co/lllyasviel/ControlNet/tree/main/models
