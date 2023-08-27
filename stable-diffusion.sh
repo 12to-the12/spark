@@ -92,6 +92,12 @@ wget -P ./models/VAE https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sd
 # https://civitai.com/models/112902
 wget -O ./models/Stable-diffusion/dreamshaperXL10_alpha2Xl10.safetensors https://civitai.com/api/download/models/126688
 
+
+# Juggernaut XL
+# https://civitai.com/models/133005
+wget -O ./models/Stable-diffusion/juggernautXL_version1.safetensors https://civitai.com/api/download/models/146359
+
+
 ## Control Net models
 # https://huggingface.co/lllyasviel/ControlNet/tree/main/models
 # https://github.com/Mikubill/sd-webui-controlnet
