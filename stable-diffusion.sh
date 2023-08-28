@@ -105,13 +105,13 @@ wget -O ./models/Stable-diffusion/juggernautXL_version1.safetensors https://civi
 # https://github.com/Mikubill/sd-webui-controlnet.git
 git clone https://github.com/Mikubill/sd-webui-controlnet.git ./extensions/
 # note: no filename is specified because huggingface doesn't fuck shit up like civitai does
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_canny.pth
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_depth.pth
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_hed.pth
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_mlsd.pth
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_normal.pth
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_openpose.pth
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_scribble.pth
-wget -P ./extensions/sd-webui-controlnet https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_seg.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_canny.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_depth.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_hed.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_mlsd.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_normal.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_openpose.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_scribble.pth
+wget -P ./extensions/sd-webui-controlnet/models https://huggingface.co/lllyasviel/ControlNet/resolve/main/models/control_sd15_seg.pth
 
 
