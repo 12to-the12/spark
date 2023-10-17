@@ -27,6 +27,14 @@ wget -O ./models/Stable-diffusion/epicrealism_pureEvolutionV5-inpainting.safeten
 # https://civitai.com/models/4823/deliberate
 wget -O ./models/Stable-diffusion/deliberate_v2.safetensors https://civitai.com/api/download/models/15236 
 
+# # Dark Pizza XL Origin 大个披萨XL 原味儿
+# # https://civitai.com/models/123008?modelVersionId=138568
+# wget -O ./models/Stable-diffusion/darkPizzaXLOriginXL_v20.safetensors https://civitai.com/api/download/models/138568 
+
+# RPG
+# https://civitai.com/models/1116?modelVersionId=124626
+wget -O ./models/Stable-diffusion/rpg_v5.safetensors https://civitai.com/api/download/models/124626
+
 
 
 ## ckpt

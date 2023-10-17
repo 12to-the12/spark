@@ -1,10 +1,6 @@
 #!/bin/bash
 
 # the goal of this script is to automate as much as possible of the setup of a new computer. It's meant to be used in conjunction with the copying over of the entire home directory
-
-#> [!note]
-#> this won't work with my current ~/.bashrc because it aliases rm to a message telling me to use trash-cli
-
 echo "And we see a spark of life"
 
 echo "Please refer to"
@@ -75,7 +71,11 @@ sudo setcap "cap_dac_override+p" $(which espanso)
 cd ~
 rm -rf ./espanso
 
-
+# alpha
+## beta
+### gamma
+#### delta
+#### epsilon
 # Visual Studio Code (the flatpak hsa given me problems both times I've naively installed it)
 # see https://code.visualstudio.com/docs/setup/linux
 # this installs the key and repository
@@ -133,13 +133,6 @@ sudo dnf install -y trash-cli
 # btop++
 # see https://github.com/aristocratos/btop#installation
 sudo dnf install -y btop
-
-# bat, a colorized cat with git integration
-# see https://github.com/sharkdp/bat
-sudo dnf install -y btop
-
-# lolcat, rainbow terminal
-sudo dnf install -y lolcat
 
 
 # nevermind, this doesn't work with the latest version of Fedora
