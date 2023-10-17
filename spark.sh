@@ -14,7 +14,7 @@ sudo dnf update -y
 
 
 # for gcc and development
-sudo dnf install @development-tools gcc-c++ wl-clipboard libxkbcommon-devel dbus-devel wxGTK3-devel
+sudo dnf install -y @development-tools gcc-c++ wl-clipboard libxkbcommon-devel dbus-devel wxGTK3-devel
 
 
 # for ssh
@@ -88,7 +88,9 @@ sudo dnf install -y code # or code-insiders
 # Blender 
 # download page: https://www.blender.org/download/
 # this downloads 3.6.4
-cd ~/Downloads
+# NOTE: requires some configuration for this method, see Obsidian Linux Journey section on .desktop files
+mkdir ~/software
+cd ~/software
 wget https://ftp.halifax.rwth-aachen.de/blender/release/Blender3.6/blender-3.6.4-linux-x64.tar.xz
 tar xf blender-3.6.4-linux-x64.tar.xz
 
@@ -151,12 +153,13 @@ sudo dnf install -y lolcat
 # systemctl enable tlp.service
 # systemctl mask systemd-rfkill.service systemd-rfkill.socket
 
+# tlp doesn't work
+# # tlp ui
+# # see https://github.com/d4nj1/TLPUI
+# # and https://flathub.org/apps/com.github.d4nj1.tlpui
+# flatpak install flathub com.github.d4nj1.tlpui
 
-# tlp ui
-# see https://github.com/d4nj1/TLPUI
-# and https://flathub.org/apps/com.github.d4nj1.tlpui
-flatpak install flathub com.github.d4nj1.tlpui
-rg the monitor automatically
+
 # see https://github.com/jadahl/gnome-monitor-config
 # and https://www.reddit.com/r/gnome/comments/xhive9/how_to_change_screen_refresh_rate_with_a_terminal/
 sudo dnf install -y gnome-monitor-config
@@ -171,6 +174,12 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/dock
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # start docker
 sudo systemctl start docker
+# start docker on boot
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+# make it not start on boot
+# sudo systemctl disable docker.service
+# sudo systemctl disable containerd.service
 # verify it's working
 sudo docker run hello-world
 
@@ -191,7 +200,10 @@ sudo docker run hello-world
 # appimage launcher
 sudo dnf install -y https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
 
+# vlc
+sudo dnf install -y vlc
 
+# GAMING
 
 # Prism Launcher
 # see https://prismlauncher.org/download/linux/
@@ -205,10 +217,13 @@ sudo dnf install -y prismlauncher
 # # stable Qt 5 releases
 # sudo dnf install -y prismlauncher-qt5
 
-# vlc
-sudo dnf install -y vlc
 
+# steam
+sudo dnf install -y steam
 
+# CKAN
+sudo dnf config-manager --add-repo https://ksp-ckan.s3-us-west-2.amazonaws.com/rpm/stable/ckan_stable.repo
+sudo dnf install -y ckan
 
 
 # # qbittorent
