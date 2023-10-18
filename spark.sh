@@ -203,6 +203,25 @@ sudo dnf install -y https://github.com/TheAssassin/AppImageLauncher/releases/dow
 # vlc
 sudo dnf install -y vlc
 
+# fixing Plex error s4032(manifest) on Firefox
+# probably a codec error
+# see https://www.virtualconfusion.net/plex-error-s4032/
+# sudo dnf install https://download1.rpmfusion.org/{free/fedora/rpmfusion-free,nonfree/fedora/rpmfusion-nonfree}-release-$(rpm -E %fedora).noarch.rpm
+# sudo dnf install -y compat-ffmpeg28 ffmpeg-libs
+sudo dnf install -y ffmpeg --allowerasing
+
+
+# tor
+# see https://www.torproject.org/download/
+cd ~/software
+wget https://www.torproject.org/dist/torbrowser/13.0/tor-browser-linux-x86_64-13.0.tar.xz
+tar xf tor-browser-linux-x86_64-13.0.tar.xz
+cd ~
+
+# kiwix
+# see https://kiwix.org/en/applications/
+# sudo dnf install -y kiwix-desktop
+
 # GAMING
 
 # Prism Launcher
@@ -219,20 +238,18 @@ sudo dnf install -y prismlauncher
 
 
 # steam
+# the rpm version wasn't opening a window
+# wait, now it's working, the flatpak was sandboxedd and wouldn't grab my ~/.local/share/Steam, so I went with the rpm
 sudo dnf install -y steam
+flatpak install flathub com.valvesoftware.Steam
+# ran this to uninstall the flatpak, pretty simple:
+# flatpak uninstall com.valvesoftware.Steam
+
 
 # CKAN
+# see https://github.com/KSP-CKAN/CKAN/blob/master/doc/rpm-repo.md
 sudo dnf config-manager --add-repo https://ksp-ckan.s3-us-west-2.amazonaws.com/rpm/stable/ckan_stable.repo
-sudo dnf install -y ckan
-
-
-# # qbittorent
-# cd ~/Downloads
-# wget https://www.fosshub.com/qBittorrent.html?dwl=qbittorrent-4.5.4_x86_64.AppImage
-
-
-# qbittorent cli
-sudo rpm --import 'https://dl.cloudsmith.io/public/qbittorrent-cli/qbittorrent-cli/gpg.F8756541ADDA2B7D.key'
+sudo dnf install -y ckansudo rpm --import 'https://dl.cloudsmith.io/public/qbittorrent-cli/qbittorrent-cli/gpg.F8756541ADDA2B7D.key'
 sudo dnf config-manager --add-repo https://repos.fedarovich.com/fedora/37/qbittorrent-cli.repo
 
 sudo dnf install -y qbittorrent-cli
