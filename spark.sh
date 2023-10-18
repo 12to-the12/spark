@@ -143,6 +143,40 @@ sudo dnf install -y btop
 # lolcat, rainbow terminal
 sudo dnf install -y lolcat
 
+# yt-dly, fork of youtube-dl
+# for donwloading youtube videos
+# I have it aliased to youtube-dl
+sudo dnf install -y yt-dlp
+
+
+
+# cava music visualizer
+# see https://github.com/karlstav/cava
+# prerequisites
+sudo dnf install -y alsa-lib-devel ncurses-devel fftw3-devel pulseaudio-libs-devel libtool autoconf-archive iniparser-devel pkgconf
+# cava
+sudo dnf install -y cava
+
+# waybar
+# see https://repology.org/project/waybar/versions
+sudo dnf install -y waybar
+# vim
+sudo dnf install -y vim
+
+# cmatrix
+# for hacking visuals
+sudo dnf install -y cmatrix
+
+# AwesomeWM with GNOME
+# see https://github.com/SirJson/awesomewm-gnome
+sudo dnf copr enable victoroliveira/gnome-flashback
+dnf install -y gnome-flashback
+# little terminal globe
+# https://ostechnix.com/run-ascii-globe-in-terminal-with-globe-cli-utility/
+cargo install globe-cli
+
+# VirtualBox
+sudo dnf install -y VirtualBox
 
 # nevermind, this doesn't work with the latest version of Fedora
 # # tlp battery saving
@@ -184,6 +218,9 @@ sudo systemctl enable containerd.service
 sudo docker run hello-world
 
 
+
+
+
 # made unnecessary by docker {
 
 # # plex media server
@@ -222,6 +259,16 @@ cd ~
 # see https://kiwix.org/en/applications/
 # sudo dnf install -y kiwix-desktop
 
+
+# activity watch
+# see https://github.com/ActivityWatch/activitywatch/releases/tag/v0.12.2
+cd ~/software
+wget https://github.com/ActivityWatch/activitywatch/releases/download/v0.12.2/activitywatch-v0.12.2-linux-x86_64.zip
+unzip activitywatch-v0.12.2-linux-x86_64.zip
+
+
+
+
 # GAMING
 
 # Prism Launcher
@@ -244,6 +291,7 @@ sudo dnf install -y steam
 flatpak install flathub com.valvesoftware.Steam
 # ran this to uninstall the flatpak, pretty simple:
 # flatpak uninstall com.valvesoftware.Steam
+
 
 
 # CKAN
