@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # the goal of this script is to automate as much as possible of the setup of a new computer. It's meant to be used in conjunction with the copying over of the entire home directory
+# this serves as a setup manual and resource repository as well as an install script
+
 
 #> [!note]
 #> this won't work with my current ~/.bashrc because it aliases rm to a message telling me to use trash-cli
@@ -142,6 +144,7 @@ sudo dnf install -y bat
 
 # lolcat, rainbow terminal
 sudo dnf install -y lolcat
+sudo dnf install -y cronie cronie-anacron
 
 # yt-dly, fork of youtube-dl
 # for donwloading youtube videos
@@ -149,6 +152,10 @@ sudo dnf install -y lolcat
 sudo dnf install -y yt-dlp
 
 
+# for cron jobs
+# handy site to help enter the correct time intervals:
+# https://crontab.guru/
+sudo dnf install -y cronie cronie-anacron
 
 # cava music visualizer
 # see https://github.com/karlstav/cava
@@ -384,6 +391,22 @@ sudo python ./matter.py # this gets a list of GRUB entries
 # grabzip https://www.fontsquirrel.com/fonts/download/inter
 # 
 
+
+# SETTING BOOT SPLASH SCREEN / ANIMATION
+# prerequisites, should already be installed
+sudo dnf install -y plymouth plymouth-themes
+# collection of themes and short guide:
+# https://www.gnome-look.org/browse?cat=108&ord=l
+# on fedora run:
+# plymouth-set-default-theme
+# to check your current theme
+# plymouth-set-default-theme --list
+# to get the available themes
+# sudo plymouth-set-default-theme tribar -R
+# to change it, and
+# sudo cp -r .angular /usr/share/plymouth/themes/
+# to move a folder containing a collection of images into the library
+# note: got error trying to set it, just installed plymouth-plugin-script to fix it
 
 echo "please reboot"
 

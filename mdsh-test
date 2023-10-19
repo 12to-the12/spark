@@ -1,0 +1,20 @@
+#!/home/logan/.local/bin/mdsh
+# Hello World in Python
+
+The following code block is executed at compile time (due to the `@mdsh`).
+(The first word on the opening line could be `shell` or `sh` or anything
+else, as long as the second word is `@mdsh`.)
+
+```bash @mdsh
+mdsh-lang-python() { python; }
+```
+
+Now that we've defined a language handler for `python`, this next code
+block is translated to shell code that runs python with the block's
+contents on stdin:
+
+```python
+print("hello world!")
+```
+
+#!/usr/bin/env mdsh
