@@ -107,14 +107,14 @@ flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-
 
 # install Fractal [matrix] client
 # see https://gitlab.gnome.org/GNOME/fractal
-flatpak install --user flathub-beta org.gnome.Fractal
+flatpak install -y --user flathub-beta org.gnome.Fractal
 
 # run Fractal application
 # flatpak run org.gnome.Fractal//betflatpak install flathub org.signal.Signal 
 
 # Signal flatpak
 # see https://github.com/flathub/org.signal.Signal
-flatpak install flathub org.signal.Signal
+flatpak install -y flathub org.signal.Signal
 flatpak override --user --env=SIGNAL_USE_WAYLAND=1 org.signal.Signal
 flatpak override --user --env=SIGNAL_DISABLE_GPU_SANDBOX=1 org.signal.Signal
 
@@ -138,7 +138,7 @@ sudo dnf install -y btop
 
 # bat, a colorized cat with git integration
 # see https://github.com/sharkdp/bat
-sudo dnf install -y btop
+sudo dnf install -y bat
 
 # lolcat, rainbow terminal
 sudo dnf install -y lolcat
@@ -191,7 +191,7 @@ sudo dnf install -y VirtualBox
 # # tlp ui
 # # see https://github.com/d4nj1/TLPUI
 # # and https://flathub.org/apps/com.github.d4nj1.tlpui
-# flatpak install flathub com.github.d4nj1.tlpui
+# flatpak install -y flathub com.github.d4nj1.tlpui
 
 
 # see https://github.com/jadahl/gnome-monitor-config
@@ -232,7 +232,7 @@ sudo docker run hello-world
 # }
 
 # # blender
-# flatpak install flathub org.blender.Blender
+# flatpak install -y flathub org.blender.Blender
 
 # appimage launcher
 sudo dnf install -y https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
@@ -288,7 +288,7 @@ sudo dnf install -y prismlauncher
 # the rpm version wasn't opening a window
 # wait, now it's working, the flatpak was sandboxedd and wouldn't grab my ~/.local/share/Steam, so I went with the rpm
 sudo dnf install -y steam
-flatpak install flathub com.valvesoftware.Steam
+flatpak install -y flathub com.valvesoftware.Steam
 # ran this to uninstall the flatpak, pretty simple:
 # flatpak uninstall com.valvesoftware.Steam
 
@@ -297,10 +297,13 @@ flatpak install flathub com.valvesoftware.Steam
 # CKAN
 # see https://github.com/KSP-CKAN/CKAN/blob/master/doc/rpm-repo.md
 sudo dnf config-manager --add-repo https://ksp-ckan.s3-us-west-2.amazonaws.com/rpm/stable/ckan_stable.repo
-sudo dnf install -y ckansudo rpm --import 'https://dl.cloudsmith.io/public/qbittorrent-cli/qbittorrent-cli/gpg.F8756541ADDA2B7D.key'
-sudo dnf config-manager --add-repo https://repos.fedarovich.com/fedora/37/qbittorrent-cli.repo
+sudo dnf install ckan
 
-sudo dnf install -y qbittorrent-cli
+
+
+# sudo dnf install -y ckansudo rpm --import 'https://dl.cloudsmith.io/public/qbittorrent-cli/qbittorrent-cli/gpg.F8756541ADDA2B7D.key'
+# sudo dnf config-manager --add-repo https://repos.fedarovich.com/fedora/37/qbittorrent-c
+# sudo dnf install -y qbittorrent-cli
 
 
 
@@ -315,9 +318,65 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 
 # Spotify
 # see https://docs.fedoraproject.org/en-US/quick-docs/installing-spotify/
-flatpak install flathub com.spotify.Client
+flatpak install -y flathub com.spotify.Client
+
+# spotifycli
+# see https://github.com/pwittchen/spotify-cli-linux
+pip install spotifycli
 
 
+
+
+
+
+# THEMES
+
+
+# GTK
+# from https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
+# overrides flatpak themes
+sudo flatpak override --filesystem=$HOME/.themes
+sudo flatpak override --filesystem=$HOME/.icons
+
+# good source of themes: https://www.pling.com/u/fkorpsvart
+sudo dnf install -y gtk-murrine-engine
+sudo dnf install -y gnome-themes-extra
+
+
+# OpenZIM reader ( the kiwix format)
+# https://github.com/birros/web-archives
+flatpak install -y com.github.birros.WebArchives
+
+
+# TMUX Plugin Manager
+# see https://github.com/tmux-plugins/tpm
+# plugin list: https://github.com/tmux-plugins/list
+# spotify: https://github.com/pwittchen/tmux-plugin-spotify
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+
+### GRUB THEMES
+# see https://github.com/jacksaur/Gorgeous-GRUB on how to customize GRUB
+# I like Matter
+# here: 
+# wget https://github.com/mateosss/matter/releases/latest/download/matter.zip
+# quickstart guide:
+# https://github.com/mateosss/matter#quick-start
+# It should be already grabbed if you just ported over the whole home directory
+# source of icons:
+# https://pictogrammers.com/library/mdi/
+cd ~/matter
+sudo python ./matter.py # this gets a list of GRUB entries
+# sudo ./matter.py -i fedora fedora fedora fedora microsoft-windows cog
+# and that will match the svg names in ~/matter/icons to the entries listed
+# ./matter.py -u # to completely remove matter
+# sudo ./matter.py --fontfile ~/grub-customization/Inter-V.ttf --fontname Inter Variable --fontsize 40
+
+
+
+# Inter font .ttf (the version of inter I use with my OS is .otf, but Matter uses .ttf, hopefully it looks similar enough)
+# grabzip https://www.fontsquirrel.com/fonts/download/inter
+# 
 
 
 echo "please reboot"
