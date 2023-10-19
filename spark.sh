@@ -178,6 +178,12 @@ cargo install globe-cli
 # VirtualBox
 sudo dnf install -y VirtualBox
 
+# borgbackup
+# backup program
+# see https://borgbackup.readthedocs.io/en/stable/installation.html
+sudo dnf install -y borgbackup
+
+
 # nevermind, this doesn't work with the latest version of Fedora
 # # tlp battery saving
 # # see https://www.linrunner.de/tlp/installation/fedora.html
