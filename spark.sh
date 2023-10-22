@@ -3,9 +3,18 @@
 # the goal of this script is to automate as much as possible of the setup of a new computer. It's meant to be used in conjunction with the copying over of the entire home directory
 # this serves as a setup manual and resource repository as well as an install script
 
+# additionally, this document has become a reference for how configure things on my Fedora Linux install
+# see "Linux Journey" in my notes repository for a journal fighting with the system (mostly the GPU)
+# the Linux Journey note is where how to do things is recorded, this file is for configuration
+
 
 #> [!note]
 #> this won't work with my current ~/.bashrc because it aliases rm to a message telling me to use trash-cli
+
+#> [!note]
+#> the previous note is incorrect, bash doesn't inherit aliases unless they are exported
+
+
 
 echo "And we see a spark of life"
 
@@ -190,6 +199,12 @@ sudo dnf install -y VirtualBox
 # see https://borgbackup.readthedocs.io/en/stable/installation.html
 sudo dnf install -y borgbackup
 
+# and borgmatic to simplify it
+# see https://torsion.org/borgmatic/docs/how-to/set-up-backups/
+sudo dnf install -y borgmatic
+# generates config at /etc/borgmatic/config.yaml
+sudo borgmatic config generate
+
 
 # nevermind, this doesn't work with the latest version of Fedora
 # # tlp battery saving
@@ -368,6 +383,14 @@ flatpak install -y com.github.birros.WebArchives
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
+
+
+# DARKTABLE
+# see https://software.opensuse.org/download.html?project=graphics:darktable&package=darktable
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/graphics:darktable/Fedora_38/graphics:darktable.repo
+sudo dnf install -y darktable
+
+
 ### GRUB THEMES
 # see https://github.com/jacksaur/Gorgeous-GRUB on how to customize GRUB
 # I like Matter
@@ -407,6 +430,38 @@ sudo dnf install -y plymouth plymouth-themes
 # sudo cp -r .angular /usr/share/plymouth/themes/
 # to move a folder containing a collection of images into the library
 # note: got error trying to set it, just installed plymouth-plugin-script to fix it
+
+
+
+# edit ~/.config/user-dirs.dirs to change default folder under home
+
+
+
+
+# overskride bluetooth manager written in Rust
+# from https://github.com/kaii-lb/overskride
+sudo systemctl enable --now bluetooth
+curl -sSL https://github.com/kaii-lb/overskride/releases/latest/download/overskride.flatpak -o ~/overskride.flatpak
+sudo flatpak install -y ~/overskride.flatpak
+rm ~/overskride.flatpak
+
+
+
+
+
+
+
+# fc-list to get fonts
+
+
+
+
+
+
+
+
+
+
 
 echo "please reboot"
 
