@@ -183,13 +183,69 @@ sudo dnf install -y vim
 # for hacking visuals
 sudo dnf install -y cmatrix
 
+# see https://github.com/bugaevc/wl-clipboard
+sudo dnf install -y wl-clipboard
+
+# little bonsai trees in the terminal
+sudo dnf install -y cbonsai
+
+# a prettier tmux dropin
+# see https://github.com/zellij-org/zellij
+sudo dnf copr enable varlad/zellij 
+sudo dnf install -y zellij
+
+# superceded by oh my zsh
+# # powerline shell prompt customization
+# # see https://github.com/b-ryan/powerline-shell
+# pip install powerline-shell
+
+sudo dnf install -y util-linux-user
+sudo dnf install -y zsh
+# chsh -s $(which zsh)
+
+# audio player
+# see https://mpv.io/installation/
+# Fedora isn't listed but it still works
+sudo dnf install -y mpv
+
+# gsu disk usage visualizer
+# see https://github.com/dundee/gdu
+curl -L https://github.com/dundee/gdu/releases/latest/download/gdu_linux_amd64.tgz | tar xz
+chmod +x gdu_linux_amd64
+sudo mv gdu_linux_amd64 /usr/bin/gdu
+
+
+# gpt assistance and piping (magic)
+# see https://github.com/TheR1D/shell_gpt
+pip install shell-gpt
+
+
+# for fetching gpu information
+# see https://github.com/wookayin/gpustat
+# gpustat -i 1
+# note: the blue number is *fan* utilization
+pip install gpustat
+
+# # disk usage viewer (gdu is much faster)
+# # see https://dev.yorhel.nl/ncdu
+# sudo dnf install -y ncdu
+
 # AwesomeWM with GNOME
 # see https://github.com/SirJson/awesomewm-gnome
-sudo dnf copr enable victoroliveira/gnome-flashback
-dnf install -y gnome-flashback
+# sudo dnf copr enable victoroliveira/gnome-flashback
+# dnf install -y gnome-flashback
+
+
 # little terminal globe
 # https://ostechnix.com/run-ascii-globe-in-terminal-with-globe-cli-utility/
 cargo install globe-cli
+
+
+
+# nordvpn
+# see https://nordvpn.com/download/linux/
+# note: to login, run nordvpn login, then copy the url at the connect button and run nordvpn login --callback "url-goes-here"
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
 # VirtualBox
 sudo dnf install -y VirtualBox
@@ -204,6 +260,24 @@ sudo dnf install -y borgbackup
 sudo dnf install -y borgmatic
 # generates config at /etc/borgmatic/config.yaml
 sudo borgmatic config generate
+
+
+
+
+# bitwarden
+cd ~/downloads/
+wget https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=rpm
+sudo dnf install index.html?app=desktop&platform=linux&variant=rpm
+cd ~
+
+# oh my zsh
+# see https://github.com/ohmyzsh/ohmyzsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+
+
+
+
 
 
 # nevermind, this doesn't work with the latest version of Fedora
@@ -274,6 +348,15 @@ sudo dnf install -y vlc
 # sudo dnf install https://download1.rpmfusion.org/{free/fedora/rpmfusion-free,nonfree/fedora/rpmfusion-nonfree}-release-$(rpm -E %fedora).noarch.rpm
 # sudo dnf install -y compat-ffmpeg28 ffmpeg-libs
 sudo dnf install -y ffmpeg --allowerasing
+
+
+
+# brave browser
+# see https://brave.com/linux/
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf install -y brave-browser
 
 
 # tor
@@ -348,13 +431,54 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 # see https://docs.fedoraproject.org/en-US/quick-docs/installing-spotify/
 flatpak install -y flathub com.spotify.Client
 
+# and a terminal client
+# see https://github.com/Rigellute/spotify-tui
+sudo dnf copr enable atim/spotify-tui -y && sudo dnf install spotify-tui
+
 # spotifycli
 # see https://github.com/pwittchen/spotify-cli-linux
 pip install spotifycli
 
+# Spicetfiy to make it shiny
+# see https://spicetify.app/docs/advanced-usage/installation/
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
+# now config it
+# flatpak spotify is /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/
+# spicetify config
+# set the path to the spotify executable and spotify preferences in the spicetify config file
+# note: bash expansion does not work
 
 
+#prefs file is at ~/.var/app/com.spotify.Client/config/spotify/prefs
+# Spicetify theme pack
+# see https://github.com/spicetify/spicetify-themes/tree/master
+# examples: https://github.com/spicetify/spicetify-themes/blob/master/THEMES.md
+git clone --depth=1 https://github.com/spicetify/spicetify-themes.git 
+cd spicetify-themes
+cp -r * ~/.config/spicetify/Themes
+# to set the theme
+spicetify config current_theme Dribbblish
+# note: color schemes aren't available for all themes
+spicetify config color_scheme White
+spicetify apply
+spicetify backup apply
 
+# to install a better terminal
+# website: https://sw.kovidgoyal.net/kitty/
+# github: 
+sudo dnf install -y kitty
+
+# *couldn't get this to work, sticking with GTILE extension*
+# pop shell tiling window manager for GNOME
+# learned about it from this reddit thread: https://www.reddit.com/r/unixporn/comments/179c7il/gnome_but_for_people_who_dont_like_gnome/SCHEME_NAME
+# see https://github.com/pop-os/shell#installation for installation
+# this reddit thread is a better usage manual: https://www.reddit.com/r/pop_os/comments/pze1p5/trying_to_use_pop_shell/
+# NOTE: I'm pretty sure the trailing period on the sudo make install. line is a type in the thread
+# sudo dnf install gnome-shell-extension-pop-shell xprop
+# git clone https://github.com/pop-os/shell-shortcuts /home/$USER/fedora/pop-theme/shell-shortcuts
+# cd /home/$USER/fedora/pop-theme/shell-shortcuts
+# make
+# sudo make install
 
 
 # THEMES
@@ -401,7 +525,7 @@ sudo dnf install -y darktable
 # It should be already grabbed if you just ported over the whole home directory
 # source of icons:
 # https://pictogrammers.com/library/mdi/
-cd ~/matter
+cd ~//boot-customization/grub-customization/matter
 sudo python ./matter.py # this gets a list of GRUB entries
 # sudo ./matter.py -i fedora fedora fedora fedora microsoft-windows cog
 # and that will match the svg names in ~/matter/icons to the entries listed
@@ -455,8 +579,13 @@ rm ~/overskride.flatpak
 
 
 
-
-
+# make dnf faster and parallel
+# see https://bash-prompt.net/guides/bash-dnf-speed/
+# sudo nano /etc/dnf/dnf.conf
+# add
+# max_parallel_downloads=20
+# fastestmirror=True
+# also allows you to change the number of kernels to retain
 
 
 
