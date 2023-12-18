@@ -14,3 +14,4 @@ chmod +x ./webui.sh
 python3.10 -m venv venv && which python && source venv/bin/activate &&\
  pip install --upgrade pip && which python && ./webui.sh)
 
+sh < (curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/install-models.sh)
