@@ -4,7 +4,7 @@ exit 1
 
 
 # run this to get a mac set up with stable diffusion
-sh < (curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/mac-stable-diffusion.sh)
+sh <(curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/mac-stable-diffusion-download.sh)
 
 # run this for a fedora device
-sh < (curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/fedora-stable-diffusion.sh)
+sh <(curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/fedora-stable-diffusion-download.sh)
