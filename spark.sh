@@ -1,5 +1,5 @@
-#!/bin/bash
-
+echo "this file is not designed to be executed as a single bash script"
+exit 1
 # the goal of this script is to automate as much as possible of the setup of a new computer. It's meant to be used in conjunction with the copying over of the entire home directory
 # this serves as a setup manual and resource repository as well as an install script
 
@@ -276,9 +276,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 
 
+# notetaking
+cd ~/applications # this is where my appimages live
 
 
-
+# marktext
+# see https://github.com/marktext/marktext/blob/develop/docs/LINUX.md
+wget https://github.com/marktext/marktext/releases/download/v0.17.1/marktext-x86_64.AppImagesolve(equation, H)
+wget https://github.com/Zettlr/Zettlr/releases/download/v3.0.3/Zettlr-3.0.3-x86_64.AppImage # -O Zettlr.AppImage
 
 # nevermind, this doesn't work with the latest version of Fedora
 # # tlp battery saving
@@ -292,6 +297,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # tlp doesn't work
 # # tlp ui
 # # see https://github.com/d4nj1/TLPUI
+# # and https://flathub.org/apps/com.github.d4nj1.tlpui
+# flatpak install -y flathub com.github.d4nj1.tlpui
+
+
 # # and https://flathub.org/apps/com.github.d4nj1.tlpui
 # flatpak install -y flathub com.github.d4nj1.tlpui
 
@@ -326,7 +335,9 @@ sudo docker run hello-world
 # made unnecessary by docker {
 
 # # plex media server
+# DONT DO THIS:
 # sudo dnf install -y https://downloads.plex.tv/plex-media-server-new/1.32.5.7349-8f4248874/redhat/plexmediaserver-1.32.5.7349-8f4248874.x86_64.rpm
+# use docker instead baby
 # sudo systemctl enable plexmediaserver
 # sudo systemctl start plexmediaserver
 # echo "go to http://$ip_address_here:32400/web/ to set up plex"
@@ -433,9 +444,7 @@ flatpak install -y flathub com.spotify.Client
 
 # and a terminal client
 # see https://github.com/Rigellute/spotify-tui
-sudo dnf copr enable atim/spotify-tui -y && sudo dnf install spotify-tui
-
-# spotifycli
+sudo dnf copr enable atSpotify
 # see https://github.com/pwittchen/spotify-cli-linux
 pip install spotifycli
 
@@ -506,6 +515,11 @@ flatpak install -y com.github.birros.WebArchives
 # spotify: https://github.com/pwittchen/tmux-plugin-spotify
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+
+
+# FONTS
+# ligatures baby
+dnf install fira-code-fonts
 
 
 
@@ -593,5 +607,6 @@ rm ~/overskride.flatpak
 
 
 echo "please reboot"
+
 
 

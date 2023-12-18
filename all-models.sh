@@ -1,6 +1,7 @@
-#!/bin/bash
-# run this from the stable-diffusion-webui directory
+echo "this file is not designed to be executed as a single bash script"
+exit 1
 
+# run this from the stable-diffusion-webui directory
 
 ## Checkpoints
 
