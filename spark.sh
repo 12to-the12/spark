@@ -1,5 +1,4 @@
-echo "this file is not designed to be executed as a single bash script"
-echo "it will printout instead"
+echo "this script is not meant to be run, it will print out information instead:"
 curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/spark.sh
 exit 1
 
