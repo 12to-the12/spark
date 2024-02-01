@@ -393,7 +393,7 @@ unzip activitywatch-v0.12.2-linux-x86_64.zip
 
 # GAMING
 
-# Prism Launcher
+# Prism Launch er
 # see https://prismlauncher.org/download/linux/
 # enables the copr repo
 sudo dnf copr enable g3tchoo/prismlauncher
@@ -601,7 +601,9 @@ rm ~/overskride.flatpak
 # fastestmirror=True
 # also allows you to change the number of kernels to retain
 
-
+# freetube youtube client
+# see https://freetubeapp.io/
+sudo dnf install https://github.com/FreeTubeApp/FreeTube/releases/download/v0.19.1-beta/freetube_0.19.1_amd64.rpm
 
 
 
