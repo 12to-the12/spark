@@ -1,10 +1,12 @@
 #!/bin/sh
+if ! command -v mdsh &> /dev/null
+then
+    curl -s https://raw.githubusercontent.com/bashup/mdsh/master/bin/mdsh > $HOME/.local/bin/mdsh
+    chmod +x $HOME/.local/bin/mdsh
+fi
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 SCRIPT_NAME=$(basename "$0")
-# curl https://raw.githubusercontent.com/bashup/mdsh/master/bin/mdsh | sh
-
-curl -s https://raw.githubusercontent.com/bashup/mdsh/master/bin/mdsh | bash -s $SCRIPT_DIR/$SCRIPT_NAME
-#   $SCRIPT_DIR/$SCRIPT_NAME
+mdsh $SCRIPT_DIR/$SCRIPT_NAME
 exit 1
 
 # Hello World in Python
@@ -23,4 +25,6 @@ contents on stdin:
 
 ```python
 print("hello world!")
+print("this is a test!")
 ```
+
