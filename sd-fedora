@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 sudo dnf install wget git python3 gperftools-libs libglvnd-glx 
 
 cd ~
