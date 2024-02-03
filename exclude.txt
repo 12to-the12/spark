@@ -1,6 +1,6 @@
 /home/logan/Downloads/copied\ from\ big\ usb/
 /home/logan/blender-files/
-/home/logan/miscallaneous_knowledge/wikipedia_en_all_maxi_2023-09.zim
+/home/logan/reference/wikipedia_en_all_maxi_2023-09.zim
 /home/logan/.local/share/Steam/
 /home/logan/Videos/
 /home/logan/.cache/
