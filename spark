@@ -1,11 +1,11 @@
-#!/bin/bash
-echo "this "
+#!/bin/sh
+echo "this file is a document not a script, it will display itself on run"
 curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/spark.sh
 exit 1
 
 
 
-# fedora-setup
+# FEDORA-SETUP
 
 # STABLE DIFFUSION
 # run this to get a mac set up with stable diffusion
