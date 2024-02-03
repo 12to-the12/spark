@@ -1,0 +1,26 @@
+#!/bin/sh
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_NAME=$(basename "$0")
+# curl https://raw.githubusercontent.com/bashup/mdsh/master/bin/mdsh | sh
+
+curl -s https://raw.githubusercontent.com/bashup/mdsh/master/bin/mdsh | bash -s $SCRIPT_DIR/$SCRIPT_NAME
+#   $SCRIPT_DIR/$SCRIPT_NAME
+exit 1
+
+# Hello World in Python
+
+The following code block is executed at compile time (due to the `@mdsh`).
+(The first word on the opening line could be `shell` or `sh` or anything
+else, as long as the second word is `@mdsh`.)
+
+```bash @mdsh
+mdsh-lang-python() { python; }
+```
+
+Now that we've defined a language handler for `python`, this next code
+block is translated to shell code that runs python with the block's
+contents on stdin:
+
+```python
+print("hello world!")
+```
