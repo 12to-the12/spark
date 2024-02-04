@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 function install() {
-  sudo dnf install --assumeyes $1
+  sudo dnf install --assumeyes $@
+
+
 }
 
 function grabzip() {
@@ -62,7 +64,7 @@ install @development-tools gcc-c++ wl-clipboard libxkbcommon-devel dbus-devel wx
 
 
 # adds rpmfusion repo
-install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf update -y
 
 # for nvidia drivers
@@ -74,13 +76,20 @@ install xorg-x11-drv-nvidia-cuda
 sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service nvidia-powerd.service
 
 # for asus stuff
-sudo dnf copr enable lukenukem/asus-linux-y
+sudo dnf copr enable lukenukem/asus-linux
+# not
+# sudo dnf copr enable lukenukem/asus-linux-y
 sudo dnf update -y
+
+# sudo dnf upgrade && sudo dnf install curl git && sudo dnf groupinstall "Development Tools"
 
 install asusctl supergfxctl
 sudo dnf update --refresh
 sudo systemctl enable supergfxd.service
-install asusctl-rog-gui
+# supergfxctl https://gitlab.com/asus-linux/supergfxctl
+# git clone https://gitlab.com/asus-linux/supergfxctl.git &&\
+# cd supergfxctl && make && sudo make install
+
 
 
 
@@ -168,6 +177,8 @@ install zellij
 # Fedora isn't listed but it still works
 install mpv
 
+# music player
+install cmus
 
 
 
@@ -203,14 +214,14 @@ sudo borgmatic config generate
 
 
 
-# notetaking
-cd ~/applications # this is where my appimages live
+# # notetaking
+# cd ~/applications # this is where my appimages live
 
 
-# marktext
-# see https://github.com/marktext/marktext/blob/develop/docs/LINUX.md
-wget https://github.com/marktext/marktext/releases/download/v0.17.1/marktext-x86_64.AppImagesolve(equation, H)
-wget https://github.com/Zettlr/Zettlr/releases/download/v3.0.3/Zettlr-3.0.3-x86_64.AppImage # -O Zettlr.AppImage
+# # marktext
+# # see https://github.com/marktext/marktext/blob/develop/docs/LINUX.md
+# wget https://github.com/marktext/marktext/releases/download/v0.17.1/marktext-x86_64.AppImagesolve(equation, H)
+# wget https://github.com/Zettlr/Zettlr/releases/download/v3.0.3/Zettlr-3.0.3-x86_64.AppImage # -O Zettlr.AppImage
 
 # nevermind, this doesn't work with the latest version of Fedora
 # nevermind again I think it does work
@@ -391,6 +402,7 @@ sudo systemctl status sshd
 
 # zerotier
 curl -s https://install.zerotier.com | sudo bash
+sudo zerotier-cli join 9f77fc393ee22053
 
 # trash-cli
 # see https://github.com/andreafrancia/trash-cli
@@ -448,7 +460,7 @@ install https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0
 
 # Obsidian.md notetaking software https://obsidian.md/download
 # THIS IS LIKELY ALREADY DOWNLOADED
-wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.5.3/Obsidian-1.5.3.AppImage
+# wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.5.3/Obsidian-1.5.3.AppImage
 
 BLOCKNAME="fancy terminal stat utilities"
 echo "do you want to install $BLOCKNAME?"
@@ -458,7 +470,8 @@ if [ "$answer" == "y" ]; then
     # btop++ https://github.com/aristocratos/btop#installation
     # htop
     # neofetch
-    install gpustat btop htop neofetch
+    install btop htop neofetch
+    pip install gpustat
     # zfxtop https://github.com/ssleert/zfxtop
     wget -qO- raw.githubusercontent.com/ssleert/zfxtop/master/install.sh | sh
 
@@ -477,6 +490,9 @@ BLOCKNAME=espanso
 echo "do you want to install $BLOCKNAME?"
 read answer
 if [ "$answer" == "y" ]; then
+    cd ~
+    install @development-tools gcc-c++ wl-clipboard libxkbcommon-devel dbus-devel wxGTK-devel.x86_64
+    cargo install --force cargo-make --version 0.34.0
     # Clone the Espanso repository
     git clone https://github.com/federico-terzi/espanso
 
@@ -492,10 +508,14 @@ if [ "$answer" == "y" ]; then
     sudo setcap "cap_dac_override+p" $(which espanso)
     # clean up folder
     cd ~
-    rm -rf ./espanso
+    \rm -rf ./espanso
 else
     echo "skipping $BLOCKNAME"
 fi
+
+install gnome-tweaks
+
+install nemo
 
 # Official GNOME Extensions App
 # extension directories: ~/.local/share/gnome-shell/extensions/ /usr/share/gnome-shell/extensions/

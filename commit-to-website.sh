@@ -3,10 +3,15 @@
 cd $PROJECTS_DIR/spark/
 git add . && git commit -m "$1" && git push origin main
 
-rsync -aPh ./spark $WEBDEV_PROJECTS_DIR/personal-website/dist/spark
-rsync -aPh ./fedora $WEBDEV_PROJECTS_DIR/personal-website/dist/fedora
-rsync -aPh ./sd-fedora $WEBDEV_PROJECTS_DIR/personal-website/dist/sd-fedora
-rsync -aPh ./sd-mac $WEBDEV_PROJECTS_DIR/personal-website/dist/sd-mac
+function syncfile() {
+    rsync -aPh ./$1 $WEBDEV_PROJECTS_DIR/personal-website/dist/$1
+
+}
+syncfile spark
+syncfile fedora
+syncfile sd-fedora
+syncfile sd-mac
+syncfile test
 
 
 
