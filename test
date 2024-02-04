@@ -7,5 +7,6 @@
 </head>
 <body>
     this is html!
+    <meta http-equiv="refresh" content="0; URL='https://loganhillyer.me/test.html'" />
 </body>
 </html>

@@ -12,6 +12,8 @@ syncfile fedora
 syncfile sd-fedora
 syncfile sd-mac
 syncfile test
+syncfile test.html
+
 
 
 
