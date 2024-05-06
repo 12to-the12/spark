@@ -76,7 +76,7 @@ case "$platform" in
 esac
 
 
-if [ critical_apps ]; then
+if [ critical_apps = 1 ]; then
   echo "<installing critical apps>"
   case "$platform" in
     fedora)
