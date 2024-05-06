@@ -11,10 +11,10 @@ echo "Welcome to Logan's world renowned computer configuration system!"
 uname_value=$(uname)
 echo $uname_value
 # trying to get mac, fedora or debian
-if [[ $uname_value == "Linux" ]]; then
+if [ $uname_value = "Linux" ]; then
   os=linux
   platform=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
-elif [[ $uname_value == "Darwin" ]]; then
+elif [ $uname_value = "Darwin" ]; then
   os=mac
   platform=mac
 else
