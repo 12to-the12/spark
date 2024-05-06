@@ -18,7 +18,6 @@ while true; do
 
 function set_install_flag(){
   flag_name=$1
-  echo "configure $1?"
   if prompt_yes_no "configure $1?"; then
     eval "$flag_name=\"1\""
   else
