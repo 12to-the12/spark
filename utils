@@ -6,11 +6,11 @@ while true; do
   read yn
 
   case $yn in 
-  	yes ) return 0;;
-   y ) return 0;;
-	  no ) return 1;;
-    n ) return 1;;
-    '' ) return 1;;
+  	yes ) return 1;;
+   y ) return 1;;
+	  no ) return;;
+    n ) return;;
+    '' ) return;;
 	  * )
       echo " $yn is an invalid response"
       sleep 0.5;;
