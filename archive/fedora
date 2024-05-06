@@ -645,6 +645,7 @@ install fira-code-fonts
 
 # A LEVEL: APPLICATION SOFTWARE
 
+flatpak install flathub com.github.iwalton3.jellyfin-media-player
 
 BLOCKNAME="terminal fun stuff"
 echo "do you want to install $BLOCKNAME?"

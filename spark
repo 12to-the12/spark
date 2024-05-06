@@ -1,16 +1,60 @@
 #!/bin/sh
-echo "this file is a document not a script, it will display itself on run"
-curl -sL https://raw.githubusercontent.com/12to-the12/spark/main/spark.sh
-exit 1
+# run the following line to execute this script:
+# curl --proto '=https' --tlsv1.2 - https://raw.githubusercontent.com/12to-the12/spark/main/spark.sh| sh
+
+valid_entries="fedora debian mac"
 
 
 
-# FEDORA-SETUP
-curl https://loganhillyer.me/fedora | sh
+echo "Welcome to Logan's world renowned computer configuration system!"
 
-# STABLE DIFFUSION
-# run this to get a mac set up with stable diffusion
-curl https://loganhillyer.me/fedora | sh
+# trying to get mac, fedora or debian
+if [[ $OSTYPE == 'linux-gnu' ]]; then
+  os=linux
+  platfom=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
+elif [[ $OSTYPE == 'darwin' ]]; then
+  os=mac
+  platform=mac
+fi
 
-# run this for a fedora device
-curl https://loganhillyer.me/fedora | sh
+echo $os
+echo $platfom
+
+# now, the desired configuration needs to be gathered
+# these are not mutually exclusive
+# options:
+# - gui configuration
+# - non task specific gui apps, web browser, obsidian, signal, etc
+# - basic cli utilities, task viewers, text editors, etc
+# - software dev tools
+# - NVIDIA gpu specific libraries and tools
+# - ASUS specific tools
+# - media stack server
+# - task related stuff, such as gaming or 3d workflow
+#
+# KISS
+
+. ./prompt.sh
+
+
+# sets up a gui operating system to my preferences
+# - set icons
+# - install critical extensions and apps
+# - set gnome preferences if using gnome
+if prompt_yes_no "configure gui?"; then
+  echo installing
+else 
+  echo not installing
+fi
+
+if prompt_yes_no "install basic gui apps?"; then
+  echo installing
+else 
+  echo not installing
+fi
+
+if prompt_yes_no "install cli utilities?"; then
+  echo installing
+else 
+  echo not installing
+fi

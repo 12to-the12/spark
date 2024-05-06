@@ -1,0 +1,105 @@
+---
+dnf:
+  cli:
+    package_managers:
+      - python
+      - python-pip
+      - nodejs
+      - pipx
+      - python3.9
+      - python3.10
+      - python3.11
+      - python3.12
+    languages:
+      - golang
+    shells:
+      - zsh
+      - nushell # in it's own copr
+      #- fish
+
+    ssh:
+      - openssh-server
+
+    editors:
+      - nano
+      - vim
+      - vi
+      - emacs
+
+    dev_utilities:
+      - util-linux-user
+      - tmux
+      - git
+      - ansible
+      - wget
+      - ripgrep
+      - fzf
+      - the_silver_searcher
+      - wl-clipboard
+      - libxkbcommon-devel
+      - dbus-devel
+      #- wxGTK3-devel
+      - cronie
+      - cronie-anacron
+      - borgbackup
+      - borgmatic
+      - trash-cli
+      - dnf-plugins-core
+
+
+    compilation:
+      - "@development-tools"
+      - gcc-c++
+    system_summaries:
+      - btop
+      - htop
+
+    utilities:
+      - iputils
+      - hostname
+
+    pretty_stuff:
+      - bat
+      - lsd
+      - tree
+      - neofetch
+      - lolcat
+      - cbonsai
+
+  nvidia_gpu:
+    - kernel-devel
+    - akmod-nvidia
+    - xorg-x11-drv-nvidia-cuda
+    - asusctl
+    - supergfxctl
+
+  graphical_utilities:
+    - yt-dlp
+    - mpv
+    - kitty
+    - gnome-tweaks
+    - nemo
+    - plymouth
+    - plymouth-themes
+    - plymouth-plugin-script
+    - gtk-murrine-engine
+    - gnome-themes-extra
+    - fira-code-fonts
+
+  media:
+    - cmus
+    - ffmpeg
+
+coprs:
+  asus:
+    repo: lukenukem/asus-linux
+    packages:
+      - 
+repositories:
+  - xxx
+
+pip:
+  - xxx
+
+flatpak:
+  - xxx

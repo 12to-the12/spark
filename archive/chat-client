@@ -1,0 +1,34 @@
+#!/bin/bash
+
+inbox=/home/public/inbox
+cd $inbox
+# page=$inbox/index.html
+page=chat.md
+port=8000
+
+name="<❤> Éanna"
+
+# port=8000
+# ip=0.0.0.0
+
+# nc -i 1 $ip $port
+
+# echo "conversation:"
+# echo "<>"
+
+
+while true; do
+tput clear
+    cat ./chat.md
+    echo
+    echo "Enter to quit"
+    read -p "-->> " input
+    # echo $input
+    if [ -z "$input" ]; then
+        echo "exiting now..."
+        exit 1
+    fi
+    echo "" >> chat.md
+    echo $name >>./chat.md
+    echo $input >>./chat.md
+done
