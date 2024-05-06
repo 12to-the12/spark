@@ -67,7 +67,7 @@ case "$platform" in
       sudo dnf install --assumeyes $@
     }
     ;;
-  debian)
+  raspbian)
     sudo apt update && sudo apt upgrade -y
     ;;
   mac)
@@ -83,7 +83,7 @@ if [ critical_apps ]; then
   case "$platform" in
     fedora)
       echo install neofetch;;
-    debian)
+    raspbian)
       echo "installing for debian"
   esac
 fi
