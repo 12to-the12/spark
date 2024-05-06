@@ -1,5 +1,5 @@
 #!/bin/sh
-function prompt_yes_no(){
+prompt_yes_no(){
 while true; do
   echo $1
   read -p "(y/n)> " yn
@@ -16,7 +16,7 @@ while true; do
   done
 }
 
-function set_install_flag(){
+set_install_flag(){
   flag_name=$1
   if prompt_yes_no "configure $1?"; then
     eval "$flag_name=\"1\""
