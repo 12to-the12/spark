@@ -9,7 +9,7 @@ function syncfile() {
 }
 
 syncfile spark
-syncfile prompt.sh
+syncfile utils.sh
 
 cd $WEBDEV_PROJECTS_DIR/personal-website/
 git add . && git commit -m "$1" && git push origin main

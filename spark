@@ -36,29 +36,16 @@ echo $platfom
 
 base_url="https://loganhillyer.me"
 #base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
-url=$base_url/prompt.sh
-curl -o prompt.sh $url
-. ./prompt.sh
+url=$base_url/utils.sh
+source <(curl -sSL $url)
 
+
+# the config is built before any installation happens so that things don't need to be monitored
 
 # sets up a gui operating system to my preferences
 # - set icons
 # - install critical extensions and apps
 # - set gnome preferences if using gnome
-if prompt_yes_no "configure gui?"; then
-  echo installing
-else 
-  echo not installing
-fi
+set_install_flag "gui"
 
-if prompt_yes_no "install basic gui apps?"; then
-  echo installing
-else 
-  echo not installing
-fi
-
-if prompt_yes_no "install cli utilities?"; then
-  echo installing
-else 
-  echo not installing
-fi
+echo "configuration built! No more user input is needed, installing now..."
