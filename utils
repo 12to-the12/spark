@@ -2,7 +2,8 @@
 prompt_yes_no(){
 while true; do
   echo $1
-  read -p "(y/n)> " yn
+  printf "(y/n)> "
+  read yn
 
   case $yn in 
   	yes ) return 0;;
