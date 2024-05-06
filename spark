@@ -68,7 +68,8 @@ case "$platform" in
     }
     ;;
   raspbian)
-    sudo apt update && sudo apt upgrade -y
+    echo "<upgrading raspbian>"
+    #sudo apt update && sudo apt upgrade -y
     ;;
   mac)
     sudo softwareupdate -i -a
@@ -84,7 +85,7 @@ if [ critical_apps ]; then
     fedora)
       echo install neofetch;;
     raspbian)
-      echo "installing for debian"
+      echo "installing for raspbian"
   esac
 fi
 
