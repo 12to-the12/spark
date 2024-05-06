@@ -1,6 +1,6 @@
 #!/bin/sh
 # run the following line to execute this script:
-# curl --proto '=https' --tlsv1.2 -sSf https://loganhillyer.me/spark | sh
+# sudo curl --proto '=https' --tlsv1.2 -sSf https://loganhillyer.me/spark | sh
 
 valid_entries="fedora debian mac"
 
@@ -8,30 +8,23 @@ valid_entries="fedora debian mac"
 
 echo "Welcome to Logan's world renowned computer configuration system!"
 
+uname_value=$(uname)
+echo $uname_value
 # trying to get mac, fedora or debian
-if [[ $OSTYPE == 'linux-gnu' ]]; then
+if [[ $uname_value == "Linux" ]]; then
   os=linux
-  platfom=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
-elif [[ $OSTYPE == 'darwin' ]]; then
+  platform=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
+elif [[ $uname_value == "Darwin" ]]; then
   os=mac
   platform=mac
+else
+  echo "unrecognized platorm"
 fi
 
 echo $os
-echo $platfom
+echo $platform
 
-# now, the desired configuration needs to be gathered
-# these are not mutually exclusive
-# options:
-# - gui configuration
-# - non task specific gui apps, web browser, obsidian, signal, etc
-# - basic cli utilities, task viewers, text editors, etc
-# - software dev tools
-# - NVIDIA gpu specific libraries and tools
-# - ASUS specific tools
-# - media stack server
-# - task related stuff, such as gaming or 3d workflow
-#
+
 # KISS
 
 base_url="https://loganhillyer.me"
@@ -39,13 +32,52 @@ base_url="https://loganhillyer.me"
 url=$base_url/utils.sh
 source <(curl -sSL $url)
 
+echo "platform: $platform"
 
-# the config is built before any installation happens so that things don't need to be monitored
 
-# sets up a gui operating system to my preferences
-# - set icons
-# - install critical extensions and apps
-# - set gnome preferences if using gnome
-set_install_flag "gui"
+set_install_flag "critical_apps"
+#set_install_flag "gui_enviroment"
+#set_install_flag "gui_app_bundle"
+#set_install_flag "cli_utilities"
+#set_install_flag "dev_tools" 
+#set_install_flag "NVIDIA_support"
+#set_install_flag "media_server"
+#set_install_flag "gaming_bundle"
+#set_install_flag "blender_workflow_bundle"
+
 
 echo "configuration built! No more user input is needed, installing now..."
+
+
+# upgrade system to current
+# note: brew is not installed by default on MacOs
+case "$platform" in
+  fedora)
+    echo "<upgrading fedora>"
+    #sudo dnf upgrade --assumeyes; flatpak upgrade
+    install(){
+      sudo dnf install --assumeyes $@
+    }
+    ;;
+  debian)
+    sudo apt update && sudo apt upgrade -y
+    ;;
+  mac)
+    sudo softwareupdate -i -a
+    ;;
+  *)
+    echo "ERROR: THIS SHOULD NEVER HAPPEN";;
+esac
+
+
+if [ critical_apps ]; then
+  echo "<installing critical apps>"
+  case "$platform" in
+    fedora)
+      install neofetch;;
+    debian)
+      echo "installing for debian"
+  esac
+fi
+
+
