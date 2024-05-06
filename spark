@@ -30,8 +30,11 @@ echo $platform
 base_url="https://loganhillyer.me"
 #base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
 url=$base_url/utils.sh
-source <(curl -sSL $url)
-
+# this is a bashism
+#source <(curl -sSL $url)
+echo grabbing...
+curl -sSL "$url" | sh
+echo grabbed
 echo "platform: $platform"
 
 
