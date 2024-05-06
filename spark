@@ -37,7 +37,7 @@ echo $platfom
 base_url="https://loganhillyer.me"
 #base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
 url=$base_url/prompt.sh
-curl -o prompt.sh $URL
+curl -o prompt.sh $url
 . ./prompt.sh
 
 
