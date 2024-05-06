@@ -1,9 +1,6 @@
 #!/bin/bash
 # run the following line to execute this script:
-# sudo curl --proto '=https' --tlsv1.2 -sSf https://loganhillyer.me/spark | sh
-
-valid_entries="fedora debian mac"
-
+# bash <(curl -sSL https://loganhillyer.me/spark)
 
 
 echo "Welcome to Logan's world renowned computer configuration system!"
