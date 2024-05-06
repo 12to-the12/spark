@@ -29,11 +29,10 @@ echo $platform
 
 base_url="https://loganhillyer.me"
 #base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
-url=$base_url/utils.sh
+url=$base_url/utils
 # this is a bashism
-#source <(curl -sSL $url)
-echo grabbing...
-curl -sSL "$url" | sh
+. <(curl -sSL $url)
+# curl -sSL "$url" | sh
 echo grabbed
 echo "platform: $platform"
 
@@ -77,7 +76,7 @@ if [ critical_apps ]; then
   echo "<installing critical apps>"
   case "$platform" in
     fedora)
-      install neofetch;;
+      echo install neofetch;;
     debian)
       echo "installing for debian"
   esac
