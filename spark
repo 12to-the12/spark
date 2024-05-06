@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # run the following line to execute this script:
 # sudo curl --proto '=https' --tlsv1.2 -sSf https://loganhillyer.me/spark | sh
 
