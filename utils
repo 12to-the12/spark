@@ -8,9 +8,9 @@ while true; do
   case $yn in 
   	yes ) return 1;;
    y ) return 1;;
-	  no ) return;;
-    n ) return;;
-    '' ) return;;
+	  no ) exit;;
+    n ) exit;;
+    '' ) exit;;
 	  * )
       echo " $yn is an invalid response"
       sleep 0.5;;
