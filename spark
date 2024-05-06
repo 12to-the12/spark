@@ -1,6 +1,6 @@
 #!/bin/sh
 # run the following line to execute this script:
-# curl --proto '=https' --tlsv1.2 - https://raw.githubusercontent.com/12to-the12/spark/main/spark.sh| sh
+# curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/12to-the12/spark/main/spark | sh
 
 valid_entries="fedora debian mac"
 
@@ -34,6 +34,9 @@ echo $platfom
 #
 # KISS
 
+base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
+url=$base_url/prompt.sh
+curl -o prompt.sh $URL
 . ./prompt.sh
 
 
