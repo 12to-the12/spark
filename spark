@@ -31,8 +31,14 @@ base_url="https://loganhillyer.me"
 #base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
 url=$base_url/utils
 # this is a bashism
-. <(curl -sSL $url)
+# . <(curl -sSL $url)
+
 # curl -sSL "$url" | sh
+temp_file=$(mktemp)
+curl -sSL "$url" > "$temp_file"
+. "$temp_file"
+rm "$temp_file"
+
 echo grabbed
 echo "platform: $platform"
 
