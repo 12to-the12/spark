@@ -11,7 +11,7 @@ while true; do
     n ) return 1;;
     '' ) return 1;;
 	  * )
-      echo invalid response
+      echo " $yn is an invalid response"
       sleep 0.5;;
   esac
   
