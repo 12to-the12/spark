@@ -27,8 +27,8 @@ echo $platform
 
 # KISS
 
-base_url="https://loganhillyer.me"
-#base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
+#base_url="https://loganhillyer.me"
+base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
 url=$base_url/utils
 # this is a bashism
 # . <(curl -sSL $url)
