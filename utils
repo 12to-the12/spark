@@ -6,12 +6,12 @@ while true; do
   read yn
 
   case $yn in 
-  	yes ) return true;;
-   y ) return 1;;
-	  no ) return false;;
+    yes ) return true;;
+    y ) return 1;;
+    no ) return false;;
     n ) return false;;
     '' ) return false;;
-	  * )
+    * )
       echo " $yn is an invalid response"
       sleep 0.5;;
   esac
