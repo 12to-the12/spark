@@ -6,11 +6,11 @@ while true; do
   read yn
 
   case $yn in 
-  	yes ) return 1;;
+  	yes ) return true;;
    y ) return 1;;
-	  no ) return 0;;
-    n ) return 0;;
-    '' ) return 0;;
+	  no ) return false;;
+    n ) return false;;
+    '' ) return false;;
 	  * )
       echo " $yn is an invalid response"
       sleep 0.5;;
@@ -22,8 +22,8 @@ while true; do
 set_install_flag(){
   flag_name=$1
   if prompt_yes_no "configure $1?"; then
-    eval "$flag_name=\"1\""
+    eval "$flag_name=\"true\""
   else
-    eval "$flag_name=\"0\""
+    eval "$flag_name=\"false\""
   fi
 }

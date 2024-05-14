@@ -76,8 +76,9 @@ case "$platform" in
 esac
 
 
+echo critical apps: $critical_apps
 
-if $critical_apps; then
+if [ "$critical_apps" = true ]; then
   echo "<installing critical apps>"
   case "$platform" in
     fedora)
@@ -88,5 +89,14 @@ if $critical_apps; then
 else
   echo "not installing critical_apps"
 fi
+
+echo "finished!"
+
+
+
+
+
+
+
 
 

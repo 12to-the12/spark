@@ -1,6 +1,14 @@
 ---
+# three axes:
+# platform
+# topic
+# program
+#
+# 
+
 dnf:
   cli:
+
     package_managers:
       - python
       - python-pip
@@ -19,9 +27,12 @@ dnf:
 
     ssh:
       - openssh-server
+      - zerotier-one
+      - fail2ban
 
     editors:
       - nano
+      - neovim
       - vim
       - vi
       - emacs
@@ -43,8 +54,8 @@ dnf:
       - cronie-anacron
       - borgbackup
       - borgmatic
-      - trash-cli
       - dnf-plugins-core
+      - gh
 
 
     compilation:
@@ -57,14 +68,19 @@ dnf:
     utilities:
       - iputils
       - hostname
+      - trash-cli
 
-    pretty_stuff:
+    fun_stuff:
       - bat
       - lsd
       - tree
       - neofetch
       - lolcat
       - cbonsai
+      - thefuck
+
+    media:
+      - nordvpn
 
   nvidia_gpu:
     - kernel-devel
@@ -95,11 +111,29 @@ coprs:
     repo: lukenukem/asus-linux
     packages:
       - 
-repositories:
-  - xxx
-
-pip:
-  - xxx
 
 flatpak:
-  - xxx
+  utils:
+    - com.bitwarden.desktop
+    - com.github.d4nj1.tlpui
+    - com.mattjakeman.ExtensionManager
+    - org.gnome.Extensions
+    - io.missioncenter.MissionCenter
+    - net.nokyan.Resources
+  reference:
+    - com.github.birros.WebArchives
+  notes:
+    -  md.obsidian.Obsidian
+  media:
+    - com.github.iwalton3.jellyfin-media-player
+    - com.spotify.Client
+    - io.freetubeapp.FreeTube
+  communication:
+    - com.slack.Slack
+    - org.gnome.Fractal
+    - org.signal.Signal
+  art:
+    - org.blender.Blender
+  gaming:
+    - org.prismlauncher.PrismLauncher
+
