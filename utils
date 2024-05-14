@@ -21,7 +21,7 @@ while true; do
 
 set_install_flag(){
   flag_name=$1
-  if prompt_yes_no "configure $1?"; then
+  if [ prompt_yes_no "configure $1?" = true ]; then
     eval "$flag_name=\"true\""
   else
     eval "$flag_name=\"false\""

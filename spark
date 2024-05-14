@@ -41,6 +41,7 @@ echo "platform: $platform"
 
 
 set_install_flag "critical_apps"
+echo input received: $critical_apps
 #set_install_flag "gui_enviroment"
 #set_install_flag "gui_app_bundle"
 #set_install_flag "cli_utilities"
