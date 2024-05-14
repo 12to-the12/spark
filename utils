@@ -7,7 +7,7 @@ while true; do
 
   case $yn in 
     yes ) return true;;
-    y ) return 1;;
+    y ) return true;;
     no ) return false;;
     n ) return false;;
     '' ) return false;;
