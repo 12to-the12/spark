@@ -44,8 +44,9 @@ url=$base_url/utils
 #curl -sSL "$url" > "$temp_file"
 echo url: $url
 #echo temp_file: $temp_file
-wget -nc $url -O "utils"
+#wget -nc $url -O "utils"
 # . "$temp_file"
+curl $base_url/utils > utils
 echo "sourcing utils"
 . ./utils
 #rm "$temp_file"
