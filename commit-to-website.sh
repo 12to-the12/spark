@@ -12,7 +12,7 @@ syncfile spark
 syncfile utils
 syncfile grub
 syncfile dnf.conf
-syncfle sshd_config
+syncfile sshd_config
 syncfile validation.sh
 syncfile packages.yml
 
