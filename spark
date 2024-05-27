@@ -43,11 +43,10 @@ rm "$temp_file"
 
 . ./utils
 
-wget $base_url/grub
-wget $base_url/dnf.conf
-wget $base_url/sshd_config
-wget $base_url/packages.yml
-exit
+wget -nc $base_url/grub
+wget -nc $base_url/dnf.conf
+wget -nc $base_url/sshd_config
+wget -nc $base_url/packages.yml
 
 
 echo grabbed
