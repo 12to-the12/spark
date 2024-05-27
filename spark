@@ -36,13 +36,15 @@ url=$base_url/utils
 # . <(curl -sSL $url)
 
 # curl -sSL "$url" | sh
-temp_file=$(mktemp)
+#temp_file=$(mktemp)
 #curl -sSL "$url" > "$temp_file"
-wget -nc $url -O $temp_file
+echo url: $url
+#echo temp_file: $temp_file
+wget -nc $url -O "utils"
 # . "$temp_file"
 
 . ./utils
-rm "$temp_file"
+#rm "$temp_file"
 
 wget -nc $base_url/grub
 wget -nc $base_url/dnf.conf
