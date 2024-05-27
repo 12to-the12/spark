@@ -42,7 +42,7 @@ echo url: $url
 #echo temp_file: $temp_file
 wget -nc $url -O "utils"
 # . "$temp_file"
-
+echo "sourcing utils"
 . ./utils
 #rm "$temp_file"
 
