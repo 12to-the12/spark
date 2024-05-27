@@ -111,6 +111,10 @@ case "$platform" in
 
     # set full name for this account
     sudo chfn -f "Logan Hillyer" $USER
+
+    install zsh
+
+    usermod -s /bin/zsh $USER
     
     # add flathub as a remote if it's not already added
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
