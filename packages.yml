@@ -7,8 +7,45 @@
 # 
 
 dnf:
-  cli:
+  critical_apps: # critical to use my setup. Most are referenced in my zshrc
+    - zsh
+    - git
+    - yq
+    - gh
+    - trash-cli
+    - bat
+    - lsd
+    - tree
+    - neovim
+    - neofetch
 
+  workstation:
+    - firefox
+    - kitty
+    - gnome-tweaks
+    - nemo
+    - gnome-themes-extra
+
+  ssh:
+    - openssh-server
+    - fail2ban
+
+  gaming:
+    - steam
+    - php # for flashpoint
+    - wine # also for flashpoint
+  
+  media_server:
+    # nothing
+  power-management:
+    - gnome-monitor-config
+    - powertop
+    - tlp
+    - tlp-rdw
+    - acpi
+
+  cli:
+    
     package_managers:
       - python
       - python-pip
@@ -25,14 +62,10 @@ dnf:
       - nushell # in it's own copr
       #- fish
 
-    ssh:
-      - openssh-server
-      - zerotier-one
-      - fail2ban
+
 
     editors:
       - nano
-      - neovim
       - vim
       - vi
       - emacs
@@ -40,7 +73,6 @@ dnf:
     dev_utilities:
       - util-linux-user
       - tmux
-      - git
       - ansible
       - wget
       - ripgrep
@@ -55,7 +87,6 @@ dnf:
       - borgbackup
       - borgmatic
       - dnf-plugins-core
-      - gh
 
 
     compilation:
@@ -68,13 +99,8 @@ dnf:
     utilities:
       - iputils
       - hostname
-      - trash-cli
 
     fun_stuff:
-      - bat
-      - lsd
-      - tree
-      - neofetch
       - lolcat
       - cbonsai
       - thefuck
@@ -82,24 +108,21 @@ dnf:
     media:
       - nordvpn
 
-  nvidia_gpu:
+    sync:
+      - syncthing
+
+  nvidia:
     - kernel-devel
     - akmod-nvidia
     - xorg-x11-drv-nvidia-cuda
-    - asusctl
-    - supergfxctl
 
   graphical_utilities:
     - yt-dlp
     - mpv
-    - kitty
-    - gnome-tweaks
-    - nemo
     - plymouth
     - plymouth-themes
     - plymouth-plugin-script
     - gtk-murrine-engine
-    - gnome-themes-extra
     - fira-code-fonts
 
   media:
@@ -115,25 +138,25 @@ coprs:
 flatpak:
   utils:
     - com.bitwarden.desktop
-    - com.github.d4nj1.tlpui
+    #  - com.github.d4nj1.tlpui
     - com.mattjakeman.ExtensionManager
     - org.gnome.Extensions
     - io.missioncenter.MissionCenter
     - net.nokyan.Resources
   reference:
     - com.github.birros.WebArchives
-  notes:
-    -  md.obsidian.Obsidian
+  #notes:
+  #  -  md.obsidian.Obsidian
   media:
-    - com.github.iwalton3.jellyfin-media-player
+  #  - com.github.iwalton3.jellyfin-media-player
     - com.spotify.Client
-    - io.freetubeapp.FreeTube
+  #  - io.freetubeapp.FreeTube
   communication:
     - com.slack.Slack
-    - org.gnome.Fractal
+  # - org.gnome.Fractal
     - org.signal.Signal
-  art:
-    - org.blender.Blender
+  #art:
+  #  - org.blender.Blender
   gaming:
-    - org.prismlauncher.PrismLauncher
+    #- org.prismlauncher.PrismLauncher
 

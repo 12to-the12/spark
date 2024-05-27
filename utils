@@ -1,4 +1,6 @@
 #!/bin/bash
+
+
 prompt_yes_no(){
 while true; do
   echo $1
@@ -6,11 +8,16 @@ while true; do
   read yn
 
   case $yn in 
-    yes ) return true;;
-    y ) return true;;
-    no ) return false;;
-    n ) return false;;
-    '' ) return false;;
+    yes )
+      return 0;;
+    y )
+      return 0;;
+    no )
+      return 1;;
+    n )
+      return 1;;
+    '' )
+      return 1;;
     * )
       echo " $yn is an invalid response"
       sleep 0.5;;
@@ -19,11 +26,12 @@ while true; do
   done
 }
 
+
 set_install_flag(){
   flag_name=$1
-  if [ prompt_yes_no "configure $1?" = true ]; then
-    eval "$flag_name=\"true\""
+  if prompt_yes_no "configure $1?"; then
+    eval "$flag_name=\"0\""
   else
-    eval "$flag_name=\"false\""
+    eval "$flag_name=\"1\""
   fi
 }
