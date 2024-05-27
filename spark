@@ -239,7 +239,8 @@ fi
 
 if [ $gnome -eq 0 ]; then
   # sets profile pic
-  pfp="$HOME/media/images/profile-picture/logan"
+  #pfp="$HOME/media/images/profile-picture/logan"
+  pfp=$HOME/.pfp/logan
   sudo rsync -avPh $pfp /var/lib/AccountsService/icons/
 fi
 
