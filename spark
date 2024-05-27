@@ -37,7 +37,8 @@ url=$base_url/utils
 
 # curl -sSL "$url" | sh
 temp_file=$(mktemp)
-curl -sSL "$url" > "$temp_file"
+#curl -sSL "$url" > "$temp_file"
+wget -nc $url -O $temp_file
 # . "$temp_file"
 
 . ./utils
