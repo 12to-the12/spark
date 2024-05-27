@@ -29,6 +29,7 @@ dnf:
   ssh:
     - openssh-server
     - fail2ban
+    - syncthing
 
   gaming:
     - steam

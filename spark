@@ -259,6 +259,9 @@ if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | sudo bas
   sudo systemctl enable sshd
   sudo systemctl start sshd
   #sudo systemctl status sshd
+
+  systemctl --user enable syncthing.service
+  systemctl --user start syncthing.service
 fi
 
 #install_bundle $gaming "gaming" "flatpak.gaming" "flatpak_install"
