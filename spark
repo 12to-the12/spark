@@ -39,9 +39,9 @@ url=$base_url/utils
 temp_file=$(mktemp)
 curl -sSL "$url" > "$temp_file"
 # . "$temp_file"
-rm "$temp_file"
 
 . ./utils
+rm "$temp_file"
 
 wget -nc $base_url/grub
 wget -nc $base_url/dnf.conf
