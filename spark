@@ -50,11 +50,10 @@ echo "sourcing utils"
 . ./utils
 #rm "$temp_file"
 
-wget -nc $base_url/grub
-wget -nc $base_url/dnf.conf
-wget -nc $base_url/sshd_config
-wget -nc $base_url/packages.yml
-
+curl $base_url/grub > grub
+curl $base_url/dnf.conf > dnf.conf
+curl $base_url/sshd_config > sshd_config
+curl $base_url/packages.yml > packages.yml
 
 echo grabbed
 echo "platform: $platform"
