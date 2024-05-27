@@ -114,7 +114,7 @@ case "$platform" in
 
     install zsh
 
-    usermod -s /bin/zsh $USER
+    sudo usermod -s /bin/zsh $USER
     
     # add flathub as a remote if it's not already added
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
