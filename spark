@@ -169,7 +169,7 @@ if [ $matter_grub_theme -eq 0 ]; then
     echo "modifying grub"
     sudo rsync ./grub /etc/default/grub
     
-    # sudo $HOME/boot-customization/grub-customization/matter/matter.py -i fedora fedora fedora microsoft-windows cog
+    # sudo $HOME/boot-customization/grub-customization/matter/matter.py -i fedora fedora fedora fedora microsoft-windows cog
     echo "applying changes..."
     sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 fi

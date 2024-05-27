@@ -34,6 +34,7 @@ dnf:
     - steam
     - php # for flashpoint
     - wine # also for flashpoint
+    - java-1.8.0-openjdk.x86_64
   
   media_server:
     # nothing
