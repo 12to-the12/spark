@@ -1,0 +1,20 @@
+GRUB_TIMEOUT=1
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau rhgb quiet plymouth=0 plymouth.enable=0"
+GRUB_DISABLE_RECOVERY="true"
+GRUB_ENABLE_BLSCFG="false"
+
+### BEGIN Matter Theme Overrides
+GRUB_THEME=/boot/grub2/themes/Matter/theme.txt
+GRUB_GFXMODE=2560x1440,auto
+
+# Fedora specific fixes
+GRUB_ENABLE_BLSCFG=false
+GRUB_TERMINAL_OUTPUT=""
+
+### END Matter Theme Overrides
+
