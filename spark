@@ -1,7 +1,11 @@
 #!/bin/bash
 # run the following line to execute this script:
 # bash <(curl -sSL https://loganhillyer.me/spark)
-
+#
+# for faster updating:
+# bash <(curl -sSL https://raw.githubusercontent.com/12to-the12/spark/main/spark)
+#
+#
 # things I have not implemented yet:
 # edited /etc/dnf/dnf.conf to make it faster
 
