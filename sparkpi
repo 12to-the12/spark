@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+sudo apt update
+
+sudo apt install tmux zsh btop git wget neovim lsd bat
+
+

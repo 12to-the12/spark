@@ -1,0 +1,11 @@
+---
+  matter_grub_theme: false
+  critical_apps: false
+  remote_access: false
+  workstation: true
+  nvidia: false
+  asus: false
+  gnome: false
+  power_management: false
+  media_server: false
+  gaming: false

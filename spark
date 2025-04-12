@@ -74,7 +74,7 @@ set_install_flag "workstation"
 set_install_flag "nvidia"
 set_install_flag "asus"
 set_install_flag "gnome"
-set_install_flag "power-management"
+set_install_flag "power_management"
 set_install_flag "media_server"
 set_install_flag "gaming"
 ##set_install_flag "blender_workflow_bundle"
@@ -106,12 +106,12 @@ case "$platform" in
     # to speed up the cache
     #systemctl enable --now dnf-makecache.timer
 
-    install dnf-automatic
+    # install dnf-automatic
     #sudo systemctl enable --now dnf-automatic-install.timer 
-    sudo systemctl enable --now dnf-automatic-download.timer
+    # sudo systemctl enable --now dnf-automatic-download.timer
 
     #sudo systemctl start dnf-automatic-install.timer
-    sudo systemctl start dnf-automatic-download.timer
+    # sudo systemctl start dnf-automatic-download.timer
 
     # set full name for this account
     sudo chfn -f "Logan Hillyer" $USER
@@ -159,6 +159,19 @@ iterate_over_packages(){
   
 }
 
+
+# nix download
+# sh <(curl -L https://nixos.org/nix/install) --daemon
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+. /home/logan/.nix-profile/etc/profile.d/nix.fish
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+
+nix-shell '<home-manager>' -A install
+
+
+
+
 if [ $matter_grub_theme -eq 0 ]; then
     echo "modifying fedora grub"
     # change dnf settings
@@ -182,7 +195,7 @@ install_bundle(){
   bundle_path=$3
   command=$4
   grouping_name="critical_apps"
-  if [ $install_flag -eq 0 ]; then
+  if [ $install_flag == 0 ]; then
     echo "<installing $bundle_name>"
     iterate_over_packages "$bundle_path" "$command"
   else
@@ -199,17 +212,17 @@ install_bundle $critical_apps "critical_apps" "dnf.critical_apps" "install"
 install_bundle $workstation "workstation" "dnf.workstation" "install"
 install_bundle $workstation "workstation" "flatpak.utils" "flatpak_install"
 install_bundle $workstation "workstation" "flatpak.media" "flatpak_install"
-install_bundle $workstation "workstation" "flatpak.communication" "flatpak_install"
+# install_bundle $workstation "workstation" "flatpak.communication" "flatpak_install"
 
 if [ $workstation -eq 0 ]; then
   # installs appimage launcher
-  install https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
+  # install https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
   
   # calibre
-  sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+  # sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
   
   # freetube
-  install https://github.com/FreeTubeApp/FreeTube/releases/download/v0.20.0-beta/freetube_0.20.0_amd64.rpm
+  # install https://github.com/FreeTubeApp/FreeTube/releases/download/v0.20.0-beta/freetube_0.20.0_amd64.rpm
 
 
   # espanso
@@ -240,7 +253,7 @@ fi
 if [ $gnome -eq 0 ]; then
   # sets profile pic
   #pfp="$HOME/media/images/profile-picture/logan"
-  pfp=$HOME/.pfp/logan
+  pfp=$HOME/.pfp
   sudo rsync -avPh $pfp /var/lib/AccountsService/icons/
 fi
 
@@ -273,8 +286,8 @@ if [ $gaming -eq 0 ]; then
 
 fi
 
-install_bundle $power-management "power-management" "dnf.power-management" "install"
-if [ $power-management -eq 0 ]; then
+install_bundle $power_management "power-management" "dnf.power-management" "install"
+if [ $power_management -eq 0 ]; then
   systemctl mask systemd-rfkill.service systemd-rfkill.socket
   systemctl enable tlp.service
 fi

@@ -146,19 +146,21 @@ flatpak:
     - io.missioncenter.MissionCenter
     - net.nokyan.Resources
   reference:
-    - com.github.birros.WebArchives
-  #notes:
-  #  -  md.obsidian.Obsidian
+    - nothing
   media:
-  #  - com.github.iwalton3.jellyfin-media-player
     - com.spotify.Client
-  #  - io.freetubeapp.FreeTube
+    - io.freetubeapp.FreeTube
   communication:
-    - com.slack.Slack
-  # - org.gnome.Fractal
-    - org.signal.Signal
+    - dummy
   #art:
+  unused:
+    # - org.signal.Signal
   #  - org.blender.Blender
+  # - org.gnome.Fractal
+  #  - com.github.iwalton3.jellyfin-media-player
+  #  -  md.obsidian.Obsidian
+    - com.github.birros.WebArchives
+
   gaming:
     #- org.prismlauncher.PrismLauncher
 
