@@ -1,0 +1,18 @@
+#!/bin/bash
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  os=linux
+  distro_id=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
+  if [ $distro_id = "fedora" ]; then
+    distro=fedora
+  elif [ $distro_id = "debian" ]; then
+    distro=debian
+  elif [ $distro_id = "raspbian" ]; then
+    distro=raspbian
+  else
+    echo "unrecognized linux distro"
+  fi
+else
+  echo "unrecognized OSTYPE" $OSTYPE
+fi
+
+

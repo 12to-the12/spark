@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+sudo apt update
+sudo apt upgrade --yes
+
+# enable I2C *yes 0 is enable
+sudo raspi-config nonint do_i2c 0
+# set country code to US
+sudo raspi-config nonint do_wifi_country US
+
+sudo apt install zsh --yes
+
+sudo usermod -s /bin/zsh $USER
+sudo apt install tmux btop git wget neovim lsd bat trash-cli tree neofetch pipx --yes
+
+pipx install uv
+
+#git clone https://github.com/12to-the12/avionics
+#cd avionics
+#make install
+
+#wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+#sudo ./.venv/bin/python ./raspi-blinka.py
+
+
+
+
+

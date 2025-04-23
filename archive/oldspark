@@ -1,0 +1,349 @@
+#!/bin/bash
+# run the following line to execute this script:
+# bash <(curl -sSL https://loganhillyer.me/spark)
+#
+# for faster updating:
+# bash <(curl -sSL https://raw.githubusercontent.com/12to-the12/spark/main/spark)
+#
+#
+# things I have not implemented yet:
+# edited /etc/dnf/dnf.conf to make it faster
+
+echo "Welcome to Logan's world renowned computer configuration system!"
+
+uname_value=$(uname)
+echo $uname_value
+# trying to get mac, fedora or debian
+if [ $uname_value = "Linux" ]; then
+  os=linux
+  platform=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
+elif [ $uname_value = "Darwin" ]; then
+  os=mac
+  platform=mac
+else
+  echo "unrecognized platorm"
+fi
+
+echo $os
+echo $platform
+
+
+# KISS
+
+
+
+
+#base_url="https://loganhillyer.me"
+base_url="https://raw.githubusercontent.com/12to-the12/spark/main"
+url=$base_url/utils
+# this is a bashism
+# . <(curl -sSL $url)
+
+# curl -sSL "$url" | sh
+#temp_file=$(mktemp)
+#curl -sSL "$url" > "$temp_file"
+echo url: $url
+#echo temp_file: $temp_file
+#wget -nc $url -O "utils"
+# . "$temp_file"
+curl $base_url/utils > utils
+echo "sourcing utils"
+. ./utils
+#rm "$temp_file"
+
+curl $base_url/grub > grub
+curl $base_url/dnf.conf > dnf.conf
+curl $base_url/sshd_config > sshd_config
+curl $base_url/packages.yml > packages.yml
+
+echo grabbed
+echo "platform: $platform"
+
+# boolean flags that allow me to specify how I want my machine configured
+# whether it's a mac, fedora, or debian
+# I can set it up to be a workstation or server, a gaming machine or a 3D art production station. Specify if I want NVIDIA support, etc
+# 
+set_install_flag "matter_grub_theme"
+set_install_flag "critical_apps"
+set_install_flag "remote_access"
+set_install_flag "workstation"
+##set_install_flag "gui_enviroment"
+##set_install_flag "gui_app_bundle"
+##set_install_flag "cli_utilities"
+##set_install_flag "dev_tools" 
+set_install_flag "nvidia"
+set_install_flag "asus"
+set_install_flag "gnome"
+set_install_flag "power_management"
+set_install_flag "media_server"
+set_install_flag "gaming"
+##set_install_flag "blender_workflow_bundle"
+
+
+echo "configuration built! No more user input is needed, installing now..."
+# this is the end of the user input section and the beginning of the installation section. User input is no longer necessary
+
+# upgrade system to current
+# note: brew is not installed by default on MacOs
+case "$platform" in
+  fedora)
+    echo "<upgrading fedora>"
+    #sudo dnf upgrade --assumeyes; flatpak upgrade
+    install(){
+      sudo dnf install --assumeyes $@
+    }
+
+    # assumes flathub
+    flatpak_install(){
+      flatpak install flathub $@ -y
+    }
+
+    upgrade(){
+      sudo dnf update -y
+    }
+
+    # fedora specific setup commands
+    # to speed up the cache
+    #systemctl enable --now dnf-makecache.timer
+
+    # install dnf-automatic
+    #sudo systemctl enable --now dnf-automatic-install.timer 
+    # sudo systemctl enable --now dnf-automatic-download.timer
+
+    #sudo systemctl start dnf-automatic-install.timer
+    # sudo systemctl start dnf-automatic-download.timer
+
+    # set full name for this account
+    sudo chfn -f "Logan Hillyer" $USER
+
+    install zsh
+
+    sudo usermod -s /bin/zsh $USER
+    
+    # add flathub as a remote if it's not already added
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    
+    
+
+    ;;
+  raspbian)
+    echo "<upgrading raspbian>"
+    #sudo apt update && sudo apt upgrade -y
+    ;;
+  mac)
+    sudo softwareupdate -i -a
+    ;;
+  *)
+    echo "ERROR: THIS SHOULD NEVER HAPPEN";;
+esac
+
+# things to run before specific packages are installed
+upgrade
+install yq gpg
+
+
+
+
+iterate_over_packages(){
+  yaml_path=$1
+  command_to_run=$2
+  
+  apps=$(yq -r ".$yaml_path[]"  ./packages.yml)
+  declare -a all_apps_array=($(echo $apps | tr "\n" " "))
+  
+  for i in "${all_apps_array[@]}"
+  do
+    eval "$command_to_run $i"
+  done
+  
+}
+
+
+# nix download
+# sh <(curl -L https://nixos.org/nix/install) --daemon
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+. /home/logan/.nix-profile/etc/profile.d/nix.fish
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+
+nix-shell '<home-manager>' -A install
+
+
+
+
+if [ $matter_grub_theme -eq 0 ]; then
+    echo "modifying fedora grub"
+    # change dnf settings
+    echo "modifying dnf settings"
+    sudo rsync ./dnf.conf /etc/dnf/dnf.conf
+
+    # change grub settings
+    echo "modifying grub"
+    sudo rsync ./grub /etc/default/grub
+    
+    # sudo $HOME/boot-customization/grub-customization/matter/matter.py -i fedora fedora fedora fedora microsoft-windows cog
+    echo "applying changes..."
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+fi
+
+# installs a list of packages in the packages.yaml file
+# takes a install flag, name of the package bundle, and it's path in the yaml
+install_bundle(){
+  install_flag=$1
+  bundle_name=$2
+  bundle_path=$3
+  command=$4
+  grouping_name="critical_apps"
+  if [ $install_flag == 0 ]; then
+    echo "<installing $bundle_name>"
+    iterate_over_packages "$bundle_path" "$command"
+  else
+    echo "not installing $bundle_name"
+  fi
+
+}
+
+install_bundle $critical_apps "critical_apps" "dnf.critical_apps" "install"
+
+
+
+
+install_bundle $workstation "workstation" "dnf.workstation" "install"
+install_bundle $workstation "workstation" "flatpak.utils" "flatpak_install"
+install_bundle $workstation "workstation" "flatpak.media" "flatpak_install"
+# install_bundle $workstation "workstation" "flatpak.communication" "flatpak_install"
+
+if [ $workstation -eq 0 ]; then
+  # installs appimage launcher
+  # install https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
+  
+  # calibre
+  # sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+  
+  # freetube
+  # install https://github.com/FreeTubeApp/FreeTube/releases/download/v0.20.0-beta/freetube_0.20.0_amd64.rpm
+
+
+  # espanso
+  sudo cp $HOME/software/espanso/target/release/espanso /usr/local/bin/espanso
+
+  sudo setcap "cap_dac_override+p" $(which espanso)
+
+  espanso service register
+
+  espanso start
+fi
+
+
+install_bundle $nvidia "nvidia" "dnf.nvidia" "install"
+if [ $nvidia -eq 0 ]; then
+  sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service nvidia-powerd.service
+fi
+
+if [ $asus -eq 0 ]; then
+  sudo dnf copr enable lukenukem/asus-linux -y
+  install asusctl supergfxctl
+  sudo systemctl enable supergfxd.service
+  install asusctl-rog-gui
+fi
+
+
+
+if [ $gnome -eq 0 ]; then
+  # sets profile pic
+  #pfp="$HOME/media/images/profile-picture/logan"
+  pfp=$HOME/.pfp
+  sudo rsync -avPh $pfp /var/lib/AccountsService/icons/
+fi
+
+install_bundle $remote_access "remote_access" "dnf.ssh" "install"
+if [ $remote_access -eq 0 ]; then
+  curl -s 'https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg' | gpg --import && \  
+if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | sudo bash; fi
+  systemctl start --now fail2ban
+  systemctl enable --now fail2ban
+
+  sudo rsync ./sshd_config /etc/ssh/sshd_config
+
+
+  # this needs to be approved in the webapp @ https://my.zerotier.com/network/9f77fc393ee22053
+  sudo zerotier-cli join 9f77fc393ee22053
+  
+  sudo systemctl enable sshd
+  sudo systemctl start sshd
+  #sudo systemctl status sshd
+
+  systemctl --user enable syncthing.service
+  systemctl --user start syncthing.service
+fi
+
+#install_bundle $gaming "gaming" "flatpak.gaming" "flatpak_install"
+install_bundle $gaming "gaming" "dnf.gaming" "install"
+if [ $gaming -eq 0 ]; then
+  sudo dnf copr enable g3tchoo/prismlauncher -y
+  install prismlauncher
+
+fi
+
+install_bundle $power_management "power-management" "dnf.power-management" "install"
+if [ $power_management -eq 0 ]; then
+  systemctl mask systemd-rfkill.service systemd-rfkill.socket
+  systemctl enable tlp.service
+fi
+
+
+
+install_bundle $media_server "media_server" "dnf.media_server" "install"
+if [ $media_server -eq 0 ]; then
+  # docker install inststructions
+  # https://docs.docker.com/engine/install/fedora/
+  sudo dnf -y install dnf-plugins-core
+  sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  
+  sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  
+  sudo systemctl start docker
+  
+  # to run without elevated permissions
+  # https://docs.docker.com/engine/install/linux-postinstall/
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  newgrp docker
+  docker run hello-world
+  
+  sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+  sudo chmod g+rwx "$HOME/.docker" -R
+  
+  # start the docker daemon
+  #sudo systemctl start docker.service
+  #sudo systemctl start docker.socket
+  
+   # enable NVIDIA container repo
+  curl -s -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo | \
+  sudo tee /etc/yum.repos.d/nvidia-container-toolkit.repo
+  
+  # install it
+  sudo dnf install -y nvidia-container-toolkit
+  # configure the runtime
+  sudo nvidia-ctk runtime configure --runtime=docker
+
+
+ # compose the media server images
+  cd $HOME/docker/
+  sudo docker compose up -d
+  cd $HOME
+fi
+
+
+
+echo "finished!"
+
+
+
+
+
+
+
+
+

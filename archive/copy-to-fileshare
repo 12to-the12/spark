@@ -1,0 +1,2 @@
+#!/bin/bash
+rsync -avzPh ./sparkpi pc:/mnt/hdd/fileshare/PUBLISH/sparkpi

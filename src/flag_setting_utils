@@ -4,7 +4,7 @@
 prompt_yes_no(){
 while true; do
   echo $1
-  printf "(y/n)> "
+  printf "(y/N)> "
   read yn
 
   case $yn in 
@@ -17,10 +17,9 @@ while true; do
     n )
       return 1;;
     '' )
-      return 1;;
+      return 0;;
     * )
-      echo " $yn is an invalid response"
-      sleep 0.5;;
+      return 0
   esac
   
   done

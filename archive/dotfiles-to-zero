@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+rsync -avPch ~/.tmux/ zero:~/.tmux/ --delete
+rsync -avPch ~/.tmux.conf zero:~/.tmux.conf --delete
+
+rsync -avPch ~/.zshrc zero:~/.zshrc --delete
+rsync -avzPch --info=progress2 ~/.oh-my-zsh/ zero:~/.oh-my-zsh/ --delete
+
+
+trash ~/projects/avionics/{venv,.venv}
+rsync -avPch ~/projects/avionics/ zero:~/avionics/ --delete 
