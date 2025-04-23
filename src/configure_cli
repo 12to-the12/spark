@@ -6,8 +6,8 @@ function configure_cli(){
     pprint --success "configuring cli"
     install zsh
     install lsd
-    install neovim
-    install trash-cli
+    #install neovim
+    #install trash-cli
     if [ $package_manager == "dnf" ]; then
       install bat
     fi

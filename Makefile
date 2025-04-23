@@ -8,12 +8,12 @@ upload:
 build:
 	docker build ./environments/debian/ -t debian-test
 	docker build ./environments/ubuntu/ -t ubuntu-test
-	docker build ./environments/raspbian/ -t ubuntu-test
-	docker build ./environments/fedora/ -t ubuntu-test
+	docker build ./environments/raspbian/ -t raspbian-test
+	docker build ./environments/fedora/ -t fedora-test
 
 test-containers: assemble-script upload
-	# docker container run -it debian-test
-	# docker container run -it ubuntu-test
+	docker container run -it debian-test
+	docker container run -it ubuntu-test
 	docker container run -it raspbian-test
 	docker container run -it fedora-test
 

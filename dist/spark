@@ -6,8 +6,8 @@ function configure_cli(){
     pprint --success "configuring cli"
     install zsh
     install lsd
-    install neovim
-    install trash-cli
+    #install neovim
+    #install trash-cli
     if [ $package_manager == "dnf" ]; then
       install bat
     fi
@@ -63,7 +63,7 @@ fi
 function set_package_manager_commands(){
   if [ $os == "linux" ]; then
 
-    echo "setting linux package manager settings:"
+    log "detecting package manager"
     case $package_manager in
       dnf)
         function install(){
