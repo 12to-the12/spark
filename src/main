@@ -1,35 +1,25 @@
 #!/bin/bash
-echo "Welcome to Logan's world renowned computer configuration system!"
-apt -qq update
-# apt -qq upgrade --yes
-# apt -qq install neofetch --yes
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  os=linux
-  distro_id=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
-  if [ $distro_id = "fedora" ]; then
-    distro=fedora
-  elif [ $distro_id = "debian" ]; then
-    distro=debian
-  elif [ $distro_id = "raspbian" ]; then
-    distro=raspbian
-  else
-    echo "unrecognized linux distro"
-  fi
-else
-  echo "unrecognized OSTYPE" $OSTYPE
+if [[ $EUID -ne 0 ]]; then
+   pprint --failure "This script must be run as root" 
+   exit 1
 fi
+parse_args
 
-echo $os
-echo $platform
-base_url="https://files.loganhillyer.me"
-
-# source <(curl -s $base_url/utils)
+pprint --success "Welcome to Logan's world renowned computer configuration system!"
 
 
-echo $distro
-echo $os
+detect_platform
+set_package_manager_commands
 
-case $distro in
-  debian)
-    echo "it's a debian system"
-esac
+
+set_setup_flags
+
+configure_personal_system
+configure_cli
+
+
+
+
+pprint --success "setup finished! Enjoy your new system!"
+pprint
+exit 0

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+function pprint(){
+
+
+  REDNUM="31"
+  GREENNUM="32"
+  YELLOWNUM="33"
+  GREYNUM="37"
+  GREEN="\033[${GREENNUM}m"
+  RED="\033[${REDNUM}m"
+  YELLOW="\033[${YELLOWNUM}m"
+  GREY="\033[${GREYNUM}m"
+  BOLDGREEN="\033[1;${GREENNUM}m"
+  ITALICRED="\033[3;${REDNUM}m"
+  ENDCOLOR="\033[0m"
+
+  
+  case $1 in
+    --success)
+      printf -- "${BOLDGREEN}[${@:2}]${ENDCOLOR}\n"
+      # print all arguments except first
+      ;;
+    --failure)
+      printf -- "${RED}${@:2}${ENDCOLOR}\n"
+      ;;
+    --log)
+      printf -- "${YELLOW}(${@:2})${ENDCOLOR}\n"
+      ;;
+    *)
+      printf -- "${GREY}$1${ENDCOLOR}\n"
+      ;;
+  esac
+}
+
+function log(){
+  pprint --log "$@"
+}

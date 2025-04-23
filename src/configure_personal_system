@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function configure_personal_system(){
+  if [ $personal_system -eq 0 ]; then
+    spin
+    pprint --success "configuring personal system"
+    install zsh
+
+    log "creating user logan if they don't exist"
+    useradd "logan" || pprint --failure "user already exists"
+    log "changing user's full name to Logan Hillyer"
+    chfn -f "Logan Hillyer" "logan"
+    log "changing user's startup shell to zsh"
+    usermod -s /bin/zsh "logan"
+    stop-spin
+  fi
+}
+
+

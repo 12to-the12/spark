@@ -9,17 +9,25 @@ while true; do
 
   case $yn in 
     yes )
-      return 0;;
+      return 1;;
     y )
+      return 0;;
+    0 )
+      return 0;;
+    true )
       return 0;;
     no )
       return 1;;
     n )
       return 1;;
+    1 )
+      return 1;;
+    false )
+      return 1;;
     '' )
-      return 0;;
+      return 1;;
     * )
-      return 0
+      return 1
   esac
   
   done

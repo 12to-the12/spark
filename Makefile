@@ -1,16 +1,30 @@
 default: all
-all: assemble-script upload build exec
+all: assemble-script upload build test-containers
 
+# uploads the fully linked shell script to my fileserver
 upload:
 	rsync -avPh ./dist/spark pc:/mnt/hdd/fileshare/PUBLISH/spark
 
 build:
-	docker build . -t mycontainer
+	docker build ./environments/debian/ -t debian-test
+	docker build ./environments/ubuntu/ -t ubuntu-test
+	docker build ./environments/raspbian/ -t ubuntu-test
+	docker build ./environments/fedora/ -t ubuntu-test
 
-exec:
-	docker container run -it mycontainer
+test-containers: assemble-script upload
+	# docker container run -it debian-test
+	# docker container run -it ubuntu-test
+	docker container run -it raspbian-test
+	docker container run -it fedora-test
 
-assemble-script:
-	cat ./src/flag_setting_utils > ./dist/spark
-	cat ./src/detect_system > ./dist/spark
+
+test-local: assemble-script
+	chmod +x ./dist/spark
+	sudo ./dist/spark
+
+assemble-script: clean
+	find ./src/* ! -name main -exec cat {} + > ./dist/spark
 	cat ./src/main >> ./dist/spark
+
+clean:
+	rm ./dist/*

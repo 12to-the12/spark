@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function configure_cli(){
+  if [ $cli -eq 0 ]; then
+    spin
+    pprint --success "configuring cli"
+    install zsh
+    install lsd
+    install neovim
+    install trash-cli
+    if [ $package_manager == "dnf" ]; then
+      install bat
+    fi
+    stop-spin
+  fi
+}

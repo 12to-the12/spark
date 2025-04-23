@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+function set_setup_flags(){
+  if [ $interactive -eq 0 ]; then
+    # set_install_flag "remote_access"
+    # set_install_flag "workstation"
+    set_install_flag "personal_system"
+    set_install_flag "cli"
+  else
+    # non interactive mode
+    remote_access=1
+    workstation=1
+    personal_system=1
+    cli=0
+  fi
+}

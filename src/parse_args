@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function parse_args(){
+  # non interactive by default
+  interactive=1
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+      -h|--help)
+        echo "goodluck!"
+        shift # past argument
+        ;;
+      --interactive)
+        interactive=0
+        shift # past argument
+        ;;
+      -*|--*)
+        pprint --failure "unknown option $1"
+        exit 1
+        ;;
+      *)
+        ;;
+    esac
+  done
+}

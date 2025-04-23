@@ -1,18 +1,61 @@
 #!/bin/bash
+function detect_platform(){
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   os=linux
   distro_id=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
   if [ $distro_id = "fedora" ]; then
     distro=fedora
+    package_manager=dnf
   elif [ $distro_id = "debian" ]; then
     distro=debian
+    package_manager=apt
   elif [ $distro_id = "raspbian" ]; then
     distro=raspbian
+    package_manager=apt
+  elif [ $distro_id = "ubuntu" ]; then
+    distro=ubuntu
+    package_manager=apt
   else
-    echo "unrecognized linux distro"
+    pprint --failure unrecognized linux distro: $distro_id
+    exit 1
   fi
 else
-  echo "unrecognized OSTYPE" $OSTYPE
+  pprint --failure unrecognized OSTYPE: $OSTYPE
+  exit 1
 fi
+}
 
+function set_package_manager_commands(){
+  if [ $os == "linux" ]; then
 
+    log "detecting package manager"
+    case $package_manager in
+      dnf)
+        function install(){
+          pprint --log "installing $@"
+          dnf install --assumeyes $@
+        }
+        function upgrade(){
+          pprint --log "upgrading system"
+          dnf upgrade --assumeyes
+        }
+        ;;
+      apt)
+        function install(){
+          log "installing $@"
+          apt install --yes $@ || pprint --failure "cannot install $@"
+        }
+        function upgrade(){
+          log "upgrading system"
+          apt -qq update && apt -qq upgrade --yes
+        }
+        ;;
+      *)
+        pprint --failure "distro not recognized"
+        exit 1
+      esac
+  else
+    pprint --failure "system not support"
+    exit 1
+  fi
+}
