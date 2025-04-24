@@ -35,7 +35,7 @@ function configure_personal_system(){
 
 #!/bin/bash
 function detect_platform(){
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [[ "$OSTYPE" =~ "linux-gnu" ]]; then
   os=linux
   distro_id=$(cat /etc/os-release | grep "^ID=" | cut -d'=' -f2)
   if [ $distro_id = "fedora" ]; then
